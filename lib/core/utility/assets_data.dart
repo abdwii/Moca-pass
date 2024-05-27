@@ -1,0 +1,50 @@
+class AssetsData {
+  static const String src = 'assets/images';
+  static const String onboardIcon = '${(src)}/splash_icon.svg';
+  static const String animatedLogo = '${(src)}/logo_animation.gif';
+  static const String animatedLoading = '${(src)}/loading.gif';
+  static const String logo = '${(src)}/logo.png';
+  static const String map = '${(src)}/map.png';
+  static const String mapMark = '${(src)}/map_mark.png';
+  static const String location = '${(src)}/location.png';
+  static const String externalLink = '${(src)}/external.png';
+  static const String blueLogo = '${(src)}/blue_logo.svg';
+  static const String welcomeTo = '${(src)}/welcome_to.svg';
+  static const String forward = '${(src)}/forward.svg';
+  static const String apple = '${(src)}/apple.svg';
+  static const String google = '${(src)}/Google.svg';
+  static const String facebook = '${(src)}/Facebook.svg';
+  static const String visable = '${(src)}/Icons-11.svg';
+  static const String invisable = '${(src)}/Icons-12.svg';
+  static const String user = '${(src)}/User.svg';
+  static const String users = '${(src)}/Users.svg';
+  static const String checkMark = '${(src)}/checkmark.svg';
+  static const String email = '${(src)}/email.svg';
+  static const String youAreAllSet = "${(src)}/YOU'RE ALL SET.gif";
+  static const String arrowDown = "${(src)}/arrow_down.svg";
+  static const String arrowRight = "${(src)}/arrow_right.svg";
+  static const String plus = "${(src)}/plus.svg";
+  static const String audience = "${(src)}/audience.svg";
+  static const String search = "${(src)}/ic_search.svg";
+  static const String eventImg = "${(src)}/placeholders/event_img.png";
+  static const String headerImage = "${(src)}/placeholders/header_image.png";
+  static const String music = "${(src)}/placeholders/music.png";
+  static const String bottomBanner = "${(src)}/placeholders/bottom_banner.png";
+  static const String svgIcHomeDisabled = "${(src)}/ic_home_disabled.svg";
+  static const String svgIcHome = "${(src)}/ic_home.svg";
+  static const String svgIcEventsDisabled = "${(src)}/ic_events_disabled.svg";
+  static const String svgIcEvents = "${(src)}/ic_events.svg";
+  static const String svgIcFavoriteDisabled =
+      "${(src)}/ic_favorite_disabled.svg";
+  static const String svgIcFavorite = "${(src)}/ic_favorite.svg";
+  static const String svgIcProfileDisabled = "${(src)}/ic_profile_disabled.svg";
+  static const String svgIcProfile = "${(src)}/ic_profile.svg";
+  static const String svgIcEventicon = "${(src)}/next_search.svg";
+
+  static const String fasbookevent = "${(src)}/fasbookevent.svg";
+  static const String net = "${(src)}/net.svg";
+  static const String wattsApp = "${(src)}/WattsApp.svg";
+  static const String youtupe = "${(src)}/youtupe.svg";
+  static const String instagram = "${(src)}/InstgramEvent.svg";
+  static const String password = "${(src)}/padlock.svg";
+}

@@ -1,0 +1,38 @@
+Report created: 
+	9/17/2023	1:57:39 PM
+
+Project name: loading animation.aep
+
+Source files collected to: 
+	E:\على فين Logo Animation\ALAF!N Motion graphics\Loading\aftereffects collect files\loading animation folder
+
+Source files collected: All
+
+Collected comps:  
+	Comp 1
+	loading 01
+	loading 02
+	loading 03
+	loading 04
+	loading animation Linked Comp 01
+	AlaFein Colors+Logo+Typography
+	loading animation Linked Comp 02
+	Pre-comp 1
+	
+Number of collected files:  3
+
+Size of collected files:  571 KB
+
+Collected source files: 
+	E:\على فين Logo Animation\AlaFein Colors+Logo+Typography-02.png
+	E:\على فين Logo Animation\AlaFein Colors+Logo+Typography.ai
+	E:\على فين Logo Animation\Logo Animation.ai
+	
+Rendering plug-ins:
+	Classic 3D
+	
+Effects used:  1
+
+Effect:  Fill
+	
+

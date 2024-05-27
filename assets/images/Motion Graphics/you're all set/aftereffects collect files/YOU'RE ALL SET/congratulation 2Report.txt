@@ -1,0 +1,43 @@
+Report created: 
+	9/17/2023	1:20:43 PM
+
+Project name: congratulation 2.aep
+
+Source files collected to: 
+	E:\على فين Logo Animation\ALAF!N Motion graphics\you're all set\aftereffects collect files\YOU'RE ALL SET
+
+Source files collected: All
+
+Collected comps:  
+	Comp 1
+	Logo Animation
+	Comp 1
+	Logo Animation
+	ؤخىبثففه
+	you're all set Linked Comp 01
+	
+Number of collected files:  5
+
+Size of collected files:  4.0 MB
+
+Collected source files: 
+	E:\على فين Logo Animation\AlaFein Colors+Logo+Typography-02.png
+	E:\على فين Logo Animation\congratulation\ref 01.mp4
+	E:\على فين Logo Animation\congratulation\sound effects\25 confetti Sound effect.mp4
+	E:\على فين Logo Animation\congratulation\sound effects\Confetti_Gun_by_Back17Ground.mp3
+	E:\على فين Logo Animation\Logo Animation.ai
+	
+Rendering plug-ins:
+	Classic 3D
+	
+Effects used:  2
+
+Effect:  
+	
+Effect:  Fill
+	
+
+Layer:  Text Layer
+	External dependencies:  
+		Font family: “Anton”, Font style: “Regular”
+

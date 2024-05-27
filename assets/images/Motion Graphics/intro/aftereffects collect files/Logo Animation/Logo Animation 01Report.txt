@@ -1,0 +1,25 @@
+Report created: 
+	9/17/2023	2:25:06 PM
+
+Project name: Logo Animation 01.aep
+
+Source files collected to: 
+	E:\على فين Logo Animation\ALAF!N Motion graphics\intro\aftereffects collect files\Logo Animation
+
+Source files collected: All
+
+Collected comps:  
+	3ala fain logo animation 
+	Logo Animation
+	Logo Animation
+	
+Number of collected files:  1
+
+Size of collected files:  241 KB
+
+Collected source files: 
+	E:\على فين Logo Animation\Logo Animation.ai
+	
+Rendering plug-ins:
+	Classic 3D
+	
