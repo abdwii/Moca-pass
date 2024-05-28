@@ -1,4 +1,4 @@
-import 'package:alafein/core/utility/colors_data.dart';
+import '../../utility/colors_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -28,8 +28,8 @@ class MainCustomButton extends StatelessWidget {
       color: backgroundColor ?? Colors.white,
       textColor: primaryColor,
       padding: EdgeInsets.symmetric(
-        horizontal: 20.sw,
-        vertical: 6.sw,
+        horizontal: 15.sw,
+        vertical: 4.5.sw,
       ),
       child: Text(
         buttonName,

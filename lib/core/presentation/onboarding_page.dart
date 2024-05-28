@@ -1,5 +1,4 @@
-import 'package:alafein/core/utility/assets_data.dart';
-import 'package:auto_route/auto_route.dart';
+import '../../core/utility/assets_data.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -26,13 +25,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset(AssetsData.onboardIcon),
-            Image.asset(AssetsData.animatedLogo),
+            // SvgPicture.asset(AssetsData.onboardIcon),
+            // Image.asset(AssetsData.animatedLogo),
           ],
         ),
       ),

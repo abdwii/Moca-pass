@@ -1,11 +1,12 @@
-import 'package:alafein/core/api/api_caller.dart';
-import 'package:alafein/core/api/constants/endpoints.dart';
-import 'package:alafein/core/api/constants/methods.dart';
-import 'package:alafein/core/local_data/session_management.dart';
-import 'package:alafein/features/auth/login/model/login_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+
+import '../../../../../core/api/api_caller.dart';
+import '../../../../../core/api/constants/endpoints.dart';
+import '../../../../../core/api/constants/methods.dart';
+import '../../../../../core/local_data/session_management.dart';
+import '../../model/login_model.dart';
 
 part 'login_state.dart';
 

@@ -1,8 +1,11 @@
-import 'package:alafein/core/observer.dart';
-import 'package:alafein/core/presentation/app_widget.dart';
-import 'package:alafein/core/utility/assets_data.dart';
-import 'package:alafein/core/utility/colors_data.dart';
-import 'package:alafein/features/auth/login/application/cubit/login_cubit.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../core/observer.dart';
+import '../../core/presentation/app_widget.dart';
+import '../../core/utility/assets_data.dart';
+import '../../core/utility/colors_data.dart';
+import '../../features/auth/login/application/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -17,24 +20,31 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
 
   // initLocator();
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (context) => LoginCubit(),
-      ),
-    ],
-    child: const AppWidget(),
-  ));
+  runApp(DevicePreview(
+      enabled: false,
+      builder: (context) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => LoginCubit(),
+            ),
+          ],
+          child: const AppWidget(),
+        );
+      }));
 }
 
 void configLoading() {
   EasyLoading.instance
     ..loadingStyle = EasyLoadingStyle.custom
     ..customAnimation = CustomLoader()
-    ..indicatorWidget = SizedBox(
-        width: 150, height: 150, child: Image.asset(AssetsData.animatedLoading))
+    ..indicatorWidget = const SizedBox(
+        width: 150, height: 150, child: Padding(
+          padding: EdgeInsets.all(20),
+          child: CircularProgressIndicator(),
+        ))
     ..infoWidget = SizedBox(
-        width: 150, height: 150, child: Image.asset(AssetsData.animatedLoading))
+        width: 150, height: 150, child: Image.asset(AssetsData.blueLogo))
     ..indicatorSize = 60
     ..indicatorColor = primaryColor
     ..contentPadding = const EdgeInsets.symmetric(vertical: 12)

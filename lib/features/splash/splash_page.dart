@@ -1,12 +1,10 @@
 import 'dart:async';
-
-import 'package:alafein/core/debugging/log.dart';
-import 'package:alafein/core/local_data/session_management.dart';
-import 'package:alafein/core/presentation/routes/routes_manager.dart';
-import 'package:alafein/core/utility/assets_data.dart';
-import 'package:alafein/core/utility/colors_data.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import '../../core/debugging/log.dart';
+import '../../core/local_data/session_management.dart';
+import '../../core/presentation/routes/routes_manager.dart';
+import '../../core/utility/assets_data.dart';
 import 'package:flutter/material.dart';
-import 'package:svg_flutter/svg.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -30,13 +28,34 @@ class SplashPage extends StatelessWidget {
         );*/
       }
     });
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
 
     return Scaffold(
-      backgroundColor: primaryColor,
-      body: Center(
-        child: Stack(alignment: Alignment.center, children: [
-          SvgPicture.asset(AssetsData.logo),
-        ]),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0.49, 0.87),
+            end: Alignment(-0.49, -0.87),
+            colors: [
+              Color(0xFF9A28CD),
+              Color(0xFFFD00E2),
+            ],
+          ),
+        ),
+        child:deviceType==DeviceScreenType.tablet? Image.asset(
+          AssetsData.splash,
+          fit: BoxFit.fitWidth,
+          height: double.infinity,
+        ):Padding(
+          padding:  EdgeInsets.symmetric(vertical: 35.sw),
+          child: Image.asset(
+            AssetsData.splash,
+            fit: BoxFit.cover,
+            height: double.infinity,
+          ),
+        )
       ),
     );
   }

@@ -1,9 +1,10 @@
-import 'package:alafein/core/presentation/onboarding_page.dart';
-import 'package:alafein/features/auth/login/presentation/login_page.dart';
-import 'package:alafein/features/splash/splash_page.dart';
+import '../../../features/auth/login/presentation/login_page.dart';
+import '../../../features/splash/splash_page.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../features/main/main_screen.dart';
+import '../onboarding_page.dart';
 
 class Routes {
   static const String splashRoute = "/";

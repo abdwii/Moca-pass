@@ -1,16 +1,16 @@
-import 'package:alafein/core/utility/assets_data.dart';
-import 'package:alafein/core/utility/strings.dart';
-import 'package:alafein/core/utility/theme.dart';
-import 'package:alafein/features/auth/login/application/cubit/login_cubit.dart';
+import '../../../../../core/utility/assets_data.dart';
+import '../../../../../core/utility/strings.dart';
+import '../../../../../core/utility/theme.dart';
+import '../../application/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
 class EmailField extends StatelessWidget {
-  EmailField({
-    super.key,
-  });
+  VoidCallback onChange;
+
+  EmailField({super.key, required this.onChange});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,18 @@ class EmailField extends StatelessWidget {
             fontFamily: StringConst.formulaFont),
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         validator: (value) {
-          if (value == null ||
-              value.isEmpty ||
-              !value.contains('@') &
-                  !value.contains('.com') &
-                  !value.contains('gmail') &
-                  !value.contains('yahoo') &
-                  !value.contains('outlook') &
-                  !value.contains('hotmail') &
-                  !value.contains('icloud') &
-                  !value.contains('live')) {
-            return 'Please enter a valid email';
+          final RegExp emailRegex = RegExp(
+            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+          );
+
+          if (value != null && value.isNotEmpty && !emailRegex.hasMatch(value)) {
+            return '*Invalid email';
           }
           return null;
+        },
+        onChanged: (value) {
+          context.read<LoginCubit>().email = value;
+          onChange();
         },
         cursorColor: Colors.white,
         onSaved: (newValue) {
@@ -57,18 +56,22 @@ class EmailField extends StatelessWidget {
           ),
           prefixIconConstraints:
               const BoxConstraints(minWidth: 0, minHeight: 0),
-          suffixIcon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.sw, horizontal: 4.sw),
-            child: SvgPicture.asset(
-              AssetsData.checkMark,
-              width: 24,
-            ),
-          ),
-          iconColor: Colors.white.withOpacity(0.3),
+          suffixIcon: isValidEmail(context)
+              ? Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 4.sw, horizontal: 4.sw),
+                  child: SvgPicture.asset(
+                    AssetsData.checkMark,
+                    width: 24,
+                  ),
+                )
+              : null,
+          suffixIconColor:
+              Colors.white.withOpacity(isValidEmail(context) ? 1 : 0.3),
           constraints: const BoxConstraints(
               maxWidth: double.infinity, minWidth: double.infinity),
           contentPadding: EdgeInsets.all(
-            6.sw,
+            4.5.sw,
           ),
           border: textFormFieldBorderStyle,
           enabledBorder: textFormFieldBorderStyle,
@@ -91,5 +94,17 @@ class EmailField extends StatelessWidget {
         autocorrect: false,
       ),
     );
+  }
+
+  bool isValidEmail(BuildContext context) {
+    try {
+      var value = BlocProvider.of<LoginCubit>(context).email;
+      final RegExp emailRegex = RegExp(
+        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+      );
+      return emailRegex.hasMatch(value);
+    } catch (e) {
+      return false;
+    }
   }
 }

@@ -1,5 +1,5 @@
-import 'package:alafein/core/utility/colors_data.dart';
-import 'package:alafein/core/utility/strings.dart';
+import '../../core/utility/colors_data.dart';
+import '../../core/utility/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -44,7 +44,7 @@ final termsTextStyle = TextStyle(
     fontWeight: FontWeight.w300);
 const descTextStyle = TextStyle(
     fontFamily: StringConst.formulaFont,
-    color: Colors.black,
+    color: Colors.white,
     fontSize: 16,
     fontWeight: FontWeight.w300);
 const descTextGrayStyle = TextStyle(
@@ -188,3 +188,236 @@ final _timePickerTheme = TimePickerThemeData(
     ),
     dialHandColor: primaryColor,
     dialBackgroundColor: kHintColor.withOpacity(0.25));
+/////////////////////////////////////////////////////////
+  TextStyle theQuick_brown_fox_jumps_over_the_lazy_dog = TextStyle(
+  fontSize: 11,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading1_regular = TextStyle(
+  fontSize: 32,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading1_medium = TextStyle(
+  fontSize: 32,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading1bold = TextStyle(
+  fontSize: 32,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading2_regular = TextStyle(
+  fontSize: 28,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading2_medium = TextStyle(
+  fontSize: 28,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading2bold = TextStyle(
+  fontSize: 28,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading3_regular = TextStyle(
+  fontSize: 25,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading3_medium = TextStyle(
+  fontSize: 25,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading3bold = TextStyle(
+  fontSize: 25,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading4regular = TextStyle(
+  fontSize: 22,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading4medium = TextStyle(
+  fontSize: 22,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading4bold = TextStyle(
+  fontSize: 22,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading5_regular = TextStyle(
+  fontSize: 20,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading5_medium = TextStyle(
+  fontSize: 20,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle heading5bold = TextStyle(
+  fontSize: 20,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodySmall_regular = TextStyle(
+  fontSize: 14,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodySmall_medium = TextStyle(
+  fontSize: 14,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodySmallbold = TextStyle(
+  fontSize: 14,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle captionLarge__regular = TextStyle(
+  fontSize: 12,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle captionLarge__medium = TextStyle(
+  fontSize: 12,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle captionLargebold = TextStyle(
+  fontSize: 12,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle captionSmallregular = TextStyle(
+  fontSize: 11,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle captionSmallmedium = TextStyle(
+  fontSize: 11,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle captionSmallbold = TextStyle(
+  fontSize: 11,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodyLargeregular = TextStyle(
+  fontSize: 18,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodyLargemedium = TextStyle(
+  fontSize: 18,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodyLargebold = TextStyle(
+  fontSize: 18,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodyMediumregular = TextStyle(
+  fontSize: 16,
+  fontWeight: getWeightFromString("regular"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodyMediummedium = TextStyle(
+  fontSize: 16,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle bodyMediumbold = TextStyle(
+  fontSize: 16,
+  fontWeight: getWeightFromString("bold"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle popbodyMediummedium = TextStyle(
+  fontSize: 16,
+  fontWeight: getWeightFromString("medium"),
+  height: 1.2000000476837158,
+);
+
+  TextStyle popbodyMediumsemi_bold = TextStyle(
+  fontWeight: getWeightFromString("semibold"),
+  color: Colors.white,
+  height: 1.2000000476837158,
+);
+
+////// CHANGE YOUR FONT WEIGHT ACCORDINGLY
+ FontWeight getWeightFromString(String weight) {
+switch (weight) {
+case "thin":
+case "thin-italic":
+return FontWeight.w100;
+case "extra-light":
+case "extra-light-italic":
+return FontWeight.w200;
+case "light":
+case "light-italic":
+return FontWeight.w300;
+case "regular":
+case "regular-italic":
+return FontWeight.w400;
+case "medium":
+case "medium-italic":
+return FontWeight.w500;
+case "semi-bold":
+case "semi-bold-italic":
+return FontWeight.w600;
+case "bold":
+case "bold-italic":
+return FontWeight.w700;
+case "extra-bold":
+case "extra-bold-italic":
+return FontWeight.w800;
+case "black":
+case "black-italic":
+return FontWeight.w900;
+default:
+return FontWeight.normal;
+}
+}

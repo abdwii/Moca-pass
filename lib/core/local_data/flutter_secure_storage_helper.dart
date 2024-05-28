@@ -1,5 +1,6 @@
-import 'package:alafein/features/auth/login/model/login_model.dart';
+import '../../features/auth/login/model/login_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 class CredentialStorage {
   final FlutterSecureStorage _storage;

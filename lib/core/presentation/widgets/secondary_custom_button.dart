@@ -1,9 +1,7 @@
-import 'package:alafein/core/utility/assets_data.dart';
-import 'package:alafein/core/utility/colors_data.dart';
+import '../../utility/colors_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:svg_flutter/svg.dart';
 
 class SecondaryCustomButton extends StatelessWidget {
   final Function onPressed;
@@ -40,10 +38,10 @@ class SecondaryCustomButton extends StatelessWidget {
                 fontSize: 16, fontWeight: FontWeight.w700),
           ),
           const Spacer(),
-          SvgPicture.asset(
-            AssetsData.forward,
-            colorFilter: kColorFilter(primaryColor),
-          ),
+          // SvgPicture.asset(
+          //   AssetsData.forward,
+          //   colorFilter: kColorFilter(primaryColor),
+          // ),
         ],
       ),
     );

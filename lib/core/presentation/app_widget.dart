@@ -1,6 +1,6 @@
-import 'package:alafein/core/presentation/routes/routes_manager.dart';
-import 'package:alafein/core/utility/strings.dart';
-import 'package:alafein/core/utility/theme.dart';
+import '../../core/presentation/routes/routes_manager.dart';
+import '../../core/utility/strings.dart';
+import '../../core/utility/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:responsive_builder/responsive_builder.dart';

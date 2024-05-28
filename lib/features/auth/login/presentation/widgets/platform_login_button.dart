@@ -1,5 +1,6 @@
-import 'package:alafein/core/utility/colors_data.dart';
-import 'package:alafein/core/utility/strings.dart';
+import '../../../../../core/utility/colors_data.dart';
+import '../../../../../core/utility/strings.dart';
+
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg.dart';

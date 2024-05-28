@@ -1,12 +1,12 @@
-import 'package:alafein/core/api/constants/endpoints.dart';
-import 'package:alafein/core/api/constants/methods.dart';
-import 'package:alafein/features/home/model/home_response/home_response.dart';
+import '../../../core/api/constants/endpoints.dart';
+import '../../../core/api/constants/methods.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../core/api/api_caller.dart';
 import '../../../core/local_data/session_management.dart';
+import '../model/home_response/home_response.dart';
 
 part 'home_state.dart';
 

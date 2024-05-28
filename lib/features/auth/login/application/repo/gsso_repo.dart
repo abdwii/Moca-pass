@@ -4,12 +4,13 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:alafein/core/local_data/session_management.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../../../core/local_data/session_management.dart';
+import '../../model/gsso_model.dart';
 
-import 'package:alafein/features/auth/login/model/gsso_model.dart';
+
 
 class GSSORepo{
 
