@@ -1,3 +1,4 @@
+import '../../../core/api/constants/api_caller_config.dart';
 import '../../../core/api/constants/endpoints.dart';
 import '../../../core/api/constants/methods.dart';
 import 'package:bloc/bloc.dart';
@@ -15,7 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getData() async {
     emit(HomeLoading());
-    final call = await APICaller.instance.call(
+    final call = await APICaller(APICallerConfiguration.baseUrl).call(
       endpoint: Endpoints.eventHome,
       method: APIMethods.get,
       options: Options(headers: {

@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../../../../features/auth/login/presentation/widgets/email_field.dart';
 import '../../../../features/auth/login/presentation/widgets/password_field.dart';
 import '../../../../core/presentation/widgets/main_custom_button.dart';
@@ -8,7 +10,6 @@ import 'package:gap/gap.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg.dart';
 import '../../../../core/utility/strings.dart';
-import '../../../../core/utility/theme.dart';
 import '../application/cubit/login_cubit.dart';
 
 class LoginBody extends StatefulWidget {
@@ -22,7 +23,11 @@ class _LoginBodyState extends State<LoginBody> {
   @override
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
-    print(deviceType);
+    if (kDebugMode) {
+      print(deviceType);
+    }
+    var isTablet = deviceType == DeviceScreenType.tablet ||
+        deviceType == DeviceScreenType.desktop;
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -38,8 +43,8 @@ class _LoginBodyState extends State<LoginBody> {
       ),
       child: SafeArea(
         child: Padding(
-          padding: deviceType == DeviceScreenType.tablet
-              ? EdgeInsets.symmetric(horizontal: 35.sw)
+          padding: isTablet
+              ? EdgeInsets.symmetric(horizontal: 50.sw)
               : EdgeInsets.symmetric(horizontal: 6.sw),
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
@@ -57,48 +62,44 @@ class _LoginBodyState extends State<LoginBody> {
                   key: cubit.formKey,
                   child: Column(
                     children: [
-                      Gap(deviceType == DeviceScreenType.tablet
-                          ? 10.sw
-                          : 35.sw),
+                      SizedBox(height: isTablet ? 8.sh : 35.sw),
                       SvgPicture.asset(
                         AssetsData.welcomeTo,
-                        width: deviceType == DeviceScreenType.tablet
-                            ? 20.sw
-                            : 35.sw,
+                        width: isTablet ? 20.sw : 35.sw,
                       ),
-                      Gap(1.sw),
+                      Gap(1.sh),
                       Image.asset(
                         AssetsData.logo,
-                        width: deviceType == DeviceScreenType.tablet
-                            ? 35.sw
-                            : 50.sw,
+                        width: isTablet ? 35.sw : 50.sw,
                       ),
-                      Gap(deviceType == DeviceScreenType.tablet
-                          ? 10.sw
-                          : 24.sw),
+                      Gap(isTablet ? 10.sw : 24.sw),
                       Text(StringConst.login,
-                          style: popbodyMediumsemi_bold.copyWith(
-                              color: Colors.white,
-                              fontSize: deviceType == DeviceScreenType.tablet
-                                  ? 64
-                                  : 32)),
-                      Gap(deviceType == DeviceScreenType.tablet ? 4.sw : 6.sw),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: isTablet ? 64 : 32)),
+                      Gap(isTablet ? 4.sw : 6.sw),
                       EmailField(onChange: () {
                         cubit.formKey.currentState!.save();
                       }),
-                      Gap(deviceType == DeviceScreenType.tablet ? 2.sw : 4.sw),
+                      Gap(isTablet ? 2.sw : 4.sw),
                       const PasswordField(),
-                      Gap(deviceType == DeviceScreenType.tablet ? 4.sw : 6.sw),
-                      MainCustomButton(
-                        buttonName: StringConst.Continue,
-                        onPressed: () async {
-                          if (cubit.formKey.currentState!.validate()) {
-                            cubit.formKey.currentState!.save();
-                            cubit.signIn();
-                          }
-                        },
+                      Gap(isTablet ? 4.sw : 6.sw),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MainCustomButton(
+                          buttonName: StringConst.Continue,
+                          onPressed: () async {
+                            if (cubit.formKey.currentState!.validate()) {
+                              cubit.formKey.currentState!.save();
+                              cubit.signIn();
+                            }
+                          },
+                        ),
                       ),
-                      Gap(deviceType == DeviceScreenType.tablet ? 4.sw : 6.sw),
+                      Gap(isTablet ? 8.sw : 6.sw),
                     ],
                   ),
                 );

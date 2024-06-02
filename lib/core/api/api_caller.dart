@@ -8,19 +8,14 @@ import '../debugging/log.dart';
 import 'interceptors.dart';
 
 import 'base_response.dart';
-import 'constants/api_caller_config.dart';
 import 'constants/methods.dart';
 
 class APICaller {
-  APICaller._();
+  String baseurl;
 
-  static final APICaller instance = APICaller._();
+  APICaller(this.baseurl);
 
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: APICallerConfiguration.baseUrl,
-    ),
-  )..interceptors.add(LoggingInterceptor());
+  late Dio _dio;
 
   Future<Either<String, BaseResponse>> call({
     required String endpoint,
@@ -32,6 +27,11 @@ class APICaller {
     void Function(int, int)? onSendProgress,
     void Function(int, int)? onReceiveProgress,
   }) async {
+    _dio = Dio(
+      BaseOptions(
+        baseUrl: baseurl,
+      ),
+    )..interceptors.add(LoggingInterceptor());
     try {
       options = options ?? Options();
       options.method = method.name;

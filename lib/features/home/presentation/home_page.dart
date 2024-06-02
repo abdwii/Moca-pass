@@ -72,7 +72,6 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 Text(
                                   'EVENTS SPOTLIGHT',
-                                  style: homeLabelStyle,
                                 ),
                                 SizedBox(
                                   height: 180,
@@ -89,7 +88,6 @@ class _HomePageState extends State<HomePage> {
                                       const EdgeInsets.symmetric(vertical: 16),
                                   child: Text(
                                     'categories'.toUpperCase(),
-                                    style: homeLabelStyle,
                                   ),
                                 ),
                               ],
@@ -101,7 +99,6 @@ class _HomePageState extends State<HomePage> {
                                 Gap(16),
                                 Text(
                                   'Happening today',
-                                  style: homeLabelStyle,
                                 ),
                               ],
                             ),

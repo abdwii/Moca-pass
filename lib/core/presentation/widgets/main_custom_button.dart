@@ -16,6 +16,9 @@ class MainCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    var isTablet = deviceType == DeviceScreenType.tablet ||
+        deviceType == DeviceScreenType.desktop;
     return MaterialButton(
       elevation: 0,
       hoverElevation: 0,
@@ -23,18 +26,20 @@ class MainCustomButton extends StatelessWidget {
       highlightElevation: 0,
       disabledElevation: 0,
       disabledColor: kHintColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      shape: const StadiumBorder(),
       onPressed: onPressed,
       color: backgroundColor ?? Colors.white,
       textColor: primaryColor,
       padding: EdgeInsets.symmetric(
-        horizontal: 15.sw,
-        vertical: 4.5.sw,
+        horizontal: isTablet ? 9.sw : 15.sw,
+        vertical: isTablet ? 2.sw : 4.5.sw,
       ),
       child: Text(
         buttonName,
-        style: GoogleFonts.plusJakartaSans(
-            fontSize: 16, fontWeight: FontWeight.w700),
+        style: Theme.of(context)
+            .textTheme
+            .labelLarge
+            ?.copyWith(color: primaryColor, fontSize: 48),
       ),
     );
   }

@@ -17,18 +17,16 @@ class EmailField extends StatelessWidget {
     return SizedBox(
       child: TextFormField(
         maxLines: 1,
-        style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 4.sw,
-            fontFamily: StringConst.formulaFont),
+        style: textInputsLabelStyle(),
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         validator: (value) {
           final RegExp emailRegex = RegExp(
             r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
           );
 
-          if (value != null && value.isNotEmpty && !emailRegex.hasMatch(value)) {
+          if (value != null &&
+              value.isNotEmpty &&
+              !emailRegex.hasMatch(value)) {
             return '*Invalid email';
           }
           return null;
@@ -47,7 +45,7 @@ class EmailField extends StatelessWidget {
         decoration: InputDecoration(
           fillColor: Colors.transparent,
           prefixIcon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.sw, horizontal: 4.sw),
+            padding: EdgeInsets.symmetric(vertical: 3.sw, horizontal: 3.sw),
             child: SvgPicture.asset(
               AssetsData.email,
               color: Colors.white,
@@ -59,7 +57,7 @@ class EmailField extends StatelessWidget {
           suffixIcon: isValidEmail(context)
               ? Padding(
                   padding:
-                      EdgeInsets.symmetric(vertical: 4.sw, horizontal: 4.sw),
+                      EdgeInsets.symmetric(vertical: 3.sw, horizontal: 3.sw),
                   child: SvgPicture.asset(
                     AssetsData.checkMark,
                     width: 24,
@@ -71,7 +69,7 @@ class EmailField extends StatelessWidget {
           constraints: const BoxConstraints(
               maxWidth: double.infinity, minWidth: double.infinity),
           contentPadding: EdgeInsets.all(
-            4.5.sw,
+            2.sw,
           ),
           border: textFormFieldBorderStyle,
           enabledBorder: textFormFieldBorderStyle,
@@ -82,10 +80,7 @@ class EmailField extends StatelessWidget {
           label: const Text(
             'Email',
           ),
-          labelStyle: const TextStyle(
-              color: Colors.white,
-              fontFamily: StringConst.formulaFont,
-              fontWeight: FontWeight.w300),
+          labelStyle: textInputsLabelStyle(),
           filled: false,
         ),
         textInputAction: TextInputAction.next,

@@ -42,7 +42,7 @@ class PlatformCustomButton extends StatelessWidget {
             style: TextStyle(
                 fontSize: 4.sw,
                 fontWeight: FontWeight.w300,
-                fontFamily: StringConst.formulaFont),
+                fontFamily: StringConst.mainFont),
           ),
           const Spacer(),
         ],

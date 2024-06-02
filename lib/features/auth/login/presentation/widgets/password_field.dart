@@ -41,11 +41,7 @@ class _PasswordFieldState extends State<PasswordField> {
       padding: EdgeInsets.only(bottom: 1.sw),
       child: TextFormField(
         focusNode: _focusNode,
-        style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 4.sw,
-            fontFamily: StringConst.formulaFont),
+        style: textInputsLabelStyle(),
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         onSaved: (value) {
           context.read<LoginCubit>().password = value!;
@@ -65,7 +61,7 @@ class _PasswordFieldState extends State<PasswordField> {
         decoration: InputDecoration(
             suffixIconColor: Colors.white,
             prefixIcon: Padding(
-              padding: EdgeInsets.all( 4.sw),
+              padding: EdgeInsets.all(3.sw),
               child: SvgPicture.asset(
                 AssetsData.password,
                 width: 24,
@@ -87,7 +83,7 @@ class _PasswordFieldState extends State<PasswordField> {
             constraints: const BoxConstraints(
                 maxWidth: double.infinity, minWidth: double.infinity),
             contentPadding: EdgeInsets.all(
-              4.5.sw,
+              2.sw,
             ),
             border: textFormFieldBorderStyle,
             enabledBorder: textFormFieldBorderStyle,
@@ -98,10 +94,7 @@ class _PasswordFieldState extends State<PasswordField> {
             label: const Text(
               'Password',
             ),
-            labelStyle: const TextStyle(
-                color: Colors.white,
-                fontFamily: StringConst.formulaFont,
-                fontWeight: FontWeight.w300),
+            labelStyle: textInputsLabelStyle(),
             filled: true,
             fillColor: Colors.transparent),
         textInputAction: TextInputAction.next,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../core/debugging/log.dart';
 import '../../core/local_data/session_management.dart';
@@ -39,12 +40,12 @@ class SplashPage extends StatelessWidget {
             begin: Alignment(0.49, 0.87),
             end: Alignment(-0.49, -0.87),
             colors: [
-              Color(0xFF9A28CD),
+              primaryColor,
               Color(0xFFFD00E2),
             ],
           ),
         ),
-        child:deviceType==DeviceScreenType.tablet? Image.asset(
+        child:deviceType==DeviceScreenType.tablet||deviceType ==DeviceScreenType.desktop? Image.asset(
           AssetsData.splash,
           fit: BoxFit.fitWidth,
           height: double.infinity,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../../../core/api/api_caller.dart';
+import '../../../../../core/api/constants/api_caller_config.dart';
 import '../../../../../core/api/constants/endpoints.dart';
 import '../../../../../core/api/constants/methods.dart';
 import '../../../../../core/local_data/session_management.dart';
@@ -15,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   late String password;
 
   LoginCubit() : super(LoginStateInitial());
-  final APICaller _apiCaller = APICaller.instance;
+  final APICaller _apiCaller = APICaller(APICallerConfiguration.baseUrl);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> signIn() async {
