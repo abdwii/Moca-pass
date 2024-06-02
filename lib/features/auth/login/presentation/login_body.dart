@@ -1,15 +1,15 @@
 import 'package:flutter/foundation.dart';
-
-import '../../../../features/auth/login/presentation/widgets/email_field.dart';
-import '../../../../features/auth/login/presentation/widgets/password_field.dart';
-import '../../../../core/presentation/widgets/main_custom_button.dart';
-import '../../../../core/utility/assets_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg.dart';
+
+import '../../../../core/presentation/widgets/main_custom_button.dart';
+import '../../../../core/utility/assets_data.dart';
 import '../../../../core/utility/strings.dart';
+import '../../../../features/auth/login/presentation/widgets/email_field.dart';
+import '../../../../features/auth/login/presentation/widgets/password_field.dart';
 import '../application/cubit/login_cubit.dart';
 
 class LoginBody extends StatefulWidget {
@@ -57,7 +57,7 @@ class _LoginBodyState extends State<LoginBody> {
                 }
               },
               builder: (context, state) {
-                final cubit = context.read<LoginCubit>();
+                final cubit = BlocProvider.of<LoginCubit>(context);
                 return Form(
                   key: cubit.formKey,
                   child: Column(

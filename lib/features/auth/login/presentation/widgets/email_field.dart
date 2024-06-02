@@ -1,11 +1,11 @@
-import '../../../../../core/utility/assets_data.dart';
-import '../../../../../core/utility/strings.dart';
-import '../../../../../core/utility/theme.dart';
-import '../../application/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg_flutter.dart';
+
+import '../../../../../core/utility/assets_data.dart';
+import '../../../../../core/utility/theme.dart';
+import '../../application/cubit/login_cubit.dart';
 
 class EmailField extends StatelessWidget {
   VoidCallback onChange;
@@ -37,6 +37,7 @@ class EmailField extends StatelessWidget {
         },
         cursorColor: Colors.white,
         onSaved: (newValue) {
+          if (newValue != null && newValue.isNotEmpty) {}
           context.read<LoginCubit>().email = newValue!;
         },
         key: const ValueKey('SignInEmail'),

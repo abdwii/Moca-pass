@@ -32,7 +32,7 @@ class MainCustomButton extends StatelessWidget {
       textColor: primaryColor,
       padding: EdgeInsets.symmetric(
         horizontal: isTablet ? 8.sw : 15.sw,
-        vertical: isTablet ? 2.sw : 4.5.sw,
+        vertical: isTablet ? 1.sh : 2.sh,
       ),
       child: Text(
         buttonName,

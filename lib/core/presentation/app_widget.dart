@@ -18,7 +18,7 @@ class AppWidget extends StatelessWidget {
           },
         ),
         onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.mainScreen,
+        initialRoute: Routes.splashRoute,
         debugShowCheckedModeBanner: false,
         title: StringConst.appName,
         theme: themeData,

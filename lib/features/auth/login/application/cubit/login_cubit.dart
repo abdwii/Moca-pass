@@ -17,7 +17,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit() : super(LoginStateInitial());
   final APICaller _apiCaller = APICaller(APICallerConfiguration.baseUrl);
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> signIn() async {
     EasyLoading.show();
