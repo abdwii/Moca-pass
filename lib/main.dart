@@ -21,7 +21,7 @@ Future<void> main() async {
 
   // initLocator();
   runApp(DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) {
         return MultiBlocProvider(
           providers: [

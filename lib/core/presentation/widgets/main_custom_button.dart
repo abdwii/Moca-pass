@@ -31,7 +31,7 @@ class MainCustomButton extends StatelessWidget {
       color: backgroundColor ?? Colors.white,
       textColor: primaryColor,
       padding: EdgeInsets.symmetric(
-        horizontal: isTablet ? 9.sw : 15.sw,
+        horizontal: isTablet ? 8.sw : 15.sw,
         vertical: isTablet ? 2.sw : 4.5.sw,
       ),
       child: Text(
@@ -39,7 +39,7 @@ class MainCustomButton extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .labelLarge
-            ?.copyWith(color: primaryColor, fontSize: 48),
+            ?.copyWith(color: primaryColor, fontSize:isTablet?2.sw :4.sw),
       ),
     );
   }
