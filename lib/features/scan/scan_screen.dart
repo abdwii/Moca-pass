@@ -26,7 +26,9 @@ class ScanPage extends StatelessWidget {
           controller: MobileScannerController(
               detectionSpeed: DetectionSpeed.noDuplicates,
               facing: SessionManagement.getCamFacing(
-                  SessionManagement.cameraFacingKey),
+                          SessionManagement.cameraFacingKey) == 0
+                  ? CameraFacing.front
+                  : CameraFacing.back,
               torchEnabled: false,
               useNewCameraSelector: false),
           onDetect: (capture) {},

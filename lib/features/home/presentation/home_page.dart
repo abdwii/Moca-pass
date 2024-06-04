@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                           color: kSecondaryColor,
                           iconPath: AssetsData.camera,
                           onPressed: ()async {
-                           SessionManagement.setCamFacing(CameraFacing.front);
+                           SessionManagement.setCamFacing(0);
                            navToAccess(context);
                           }),
                       Gap(2.sh),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                           iconPath: AssetsData.camera,
                           onPressed: ()async {
-                            SessionManagement.setCamFacing(CameraFacing.back);
+                            SessionManagement.setCamFacing(1);
                             navToAccess(context);
                           }),
                     ],
