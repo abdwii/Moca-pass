@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'core/local_data/session_management.dart';
-import 'core/utility/CustomLoader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +25,7 @@ Future<void> main() async {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => LoginCubit(),
+              create: (context) => LoginCubit("",""),
             ),
           ],
           child: const AppWidget(),
@@ -37,7 +36,6 @@ Future<void> main() async {
 void configLoading() {
   EasyLoading.instance
     ..loadingStyle = EasyLoadingStyle.custom
-    ..customAnimation = CustomLoader()
     ..indicatorWidget = const SizedBox(
         width: 150, height: 150, child: Padding(
           padding: EdgeInsets.all(20),

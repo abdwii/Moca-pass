@@ -6,11 +6,8 @@ const kSecondaryColor = YELLOWY300_FFE42C;
 const kGreyFontColor = Color(0xFF464646);
 const kSecondaryFontColor = Color(0xFF727272);
 const kHintColor = Color(0xFFBDBDBD);
-const kIconGrayColor = Color(0xFF333333);
-const kPersonGreyColor = Color(0xFF5f5f5f);
-const kDividerColor = Color(0xFFECECEC);
-const kSemiBlack = Color(0xFF292929);
-const kTealColor = Color(0xFF9AE0DF);
+const kErrorColor = NOTIFY_REDN300_F54E60;
+
 const kProfilePicBackgroundColor = Color(0xFFEDEDED);
 
 const Color MOCA_PURPLEM50_F5EAFA = Color(0xFFF5EAFA);

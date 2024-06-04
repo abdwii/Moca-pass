@@ -27,17 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
     call.fold(
       (l) => EasyLoading.showError(l),
       (response) {
-        if (response.succeeded == true) {
-          emit(HomeLoaded(HomeResponse.fromMap(response.data)));
-          EasyLoading.dismiss();
-        } else {
-          if (SessionManagement.getUserRole() != "") {
-            EasyLoading.showError(response.message ?? "Error !");
-          } else {
-            EasyLoading.showError("Logged in as Gust");
-          }
-          emit(HomeError());
-        }
+
       },
     );
   }

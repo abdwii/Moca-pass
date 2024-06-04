@@ -25,13 +25,13 @@ class PlatformCustomButton extends StatelessWidget {
       highlightElevation: 0,
       disabledElevation: 0,
       shape: RoundedRectangleBorder(
-          side: const BorderSide(width: 1.5, color: kDividerColor),
+          side: const BorderSide(width: 1.5, color: Colors.black),
           borderRadius: BorderRadius.circular(12)),
       onPressed: () {
         onPressed();
       },
       color: Colors.white,
-      textColor: kSemiBlack,
+      textColor: Colors.black,
       padding: EdgeInsets.symmetric(horizontal: 8.sw, vertical: 4.sw),
       child: Row(
         children: [

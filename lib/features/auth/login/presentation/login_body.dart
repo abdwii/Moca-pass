@@ -1,5 +1,9 @@
+import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
+import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../../../core/presentation/widgets/app_background.dart';
+import '../../../../core/utility/theme.dart';
 import '../../../../features/auth/login/presentation/widgets/email_field.dart';
 import '../../../../features/auth/login/presentation/widgets/password_field.dart';
 import '../../../../core/presentation/widgets/main_custom_button.dart';
@@ -20,44 +24,32 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
+  bool isObscureText = true;
+
   @override
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
+    var deviceOrientation = (MediaQuery.of(context).orientation);
     if (kDebugMode) {
       print(deviceType);
     }
     var isTablet = deviceType == DeviceScreenType.tablet ||
         deviceType == DeviceScreenType.desktop;
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0.49, 0.87),
-          end: Alignment(-0.49, -0.87),
-          colors: [
-            Color(0xFF9A28CD),
-            Color(0xFFFD00E2),
-          ],
-        ),
-      ),
+    return AppBackground(
       child: SafeArea(
         child: Padding(
-          padding: isTablet
-              ? EdgeInsets.symmetric(horizontal: 50.sw)
-              : EdgeInsets.symmetric(horizontal: 6.sw),
+          padding: getLoginHPadding(isTablet, deviceOrientation),
           child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
             child: BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginStateLoaded) {
-                  // AutoRouter.of(context).replace(
-                  //   OnboardingRoute(route: MainRoute()),
-                  // );
+                  Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
                 }
               },
               builder: (context, state) {
-                final cubit = context.read<LoginCubit>();
+                final cubit = BlocProvider.of<LoginCubit>(context);
+                print(cubit.isValidForm(cubit.email, cubit.password));
                 return Form(
                   key: cubit.formKey,
                   child: Column(
@@ -80,23 +72,74 @@ class _LoginBodyState extends State<LoginBody> {
                               ?.copyWith(
                                   color: Colors.white,
                                   fontSize: isTablet ? 64 : 32)),
+                      /*                      Gap(isTablet ? 4.sw : 6.sw),
+
+                      AppTextFormField(
+                        hintText: 'Email',
+                        validator: (value) {},
+                        contentPadding:  EdgeInsets.symmetric(
+                          horizontal: isTablet ? 2.sw : 2.sw,
+                          vertical: isTablet ? 1.5.sh : 2.sh,
+                        ),
+                      ),
+    */
                       Gap(isTablet ? 4.sw : 6.sw),
                       EmailField(onChange: () {
+                        cubit.formKey.currentState!.validate();
                         cubit.formKey.currentState!.save();
                       }),
-                      Gap(isTablet ? 2.sw : 4.sw),
+                      Gap(isTablet ? 1.sw : 2.sw),
                       const PasswordField(),
+                      // AppTextFormField(
+                      //   hintText: 'Password',
+                      //   isObscureText: isObscureText,
+                      //   suffixIcon: GestureDetector(
+                      //     onTap: () {
+                      //       setState(() {
+                      //         isObscureText = !isObscureText ;
+                      //       });
+                      //     },
+                      //
+                      //     child: Icon(
+                      //       isObscureText ? Icons.visibility_off : Icons.visibility,
+                      //       size:isTablet?3.sw: 5.sw,
+                      //       color: Colors.white,
+                      //     ),
+                      //   ),
+                      //   prefixIcon:  cubit.isValidEmail(null)
+                      //       ? Padding(
+                      //     padding:
+                      //     EdgeInsets.symmetric(vertical: 3.sw, horizontal: 3.sw),
+                      //     child: SvgPicture.asset(
+                      //       AssetsData.checkMark,
+                      //       width: 24,
+                      //     ),
+                      //   )
+                      //       : null,
+                      //   contentPadding:  EdgeInsets.symmetric(
+                      //     horizontal: isTablet ? 2.sw : 2.sw,
+                      //     vertical: isTablet ? 1.5.sh : 2.sh,
+                      //   ),
+                      //   validator: (value) {
+                      //     cubit.isValidPassword(value!);
+                      //   },
+                      // ),
                       Gap(isTablet ? 4.sw : 6.sw),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(12.0),
                         child: MainCustomButton(
                           buttonName: StringConst.Continue,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isTablet ? 9.sw : 15.sw,
+                            vertical: isTablet ? 2.sw : 4.5.sw,
+                          ),
                           onPressed: () async {
                             if (cubit.formKey.currentState!.validate()) {
                               cubit.formKey.currentState!.save();
                               cubit.signIn();
                             }
                           },
+                          isEnabled: true,
                         ),
                       ),
                       Gap(isTablet ? 8.sw : 6.sw),

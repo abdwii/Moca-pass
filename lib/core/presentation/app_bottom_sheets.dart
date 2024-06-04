@@ -1,0 +1,180 @@
+import 'package:MocaPass/core/presentation/widgets/main_custom_button.dart';
+import 'package:MocaPass/core/utility/colors_data.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+
+import '../utility/strings.dart';
+
+void showErrorDialog(
+    String message, BuildContext context, VoidCallback onPress) {
+  showModalBottomSheet(
+    isDismissible: false,
+    backgroundColor: kSecondaryColor,
+    context: context,
+    enableDrag: false,
+    constraints: const BoxConstraints(minWidth: double.infinity),
+    builder: (BuildContext context) {
+      return BottomSheet(
+        constraints: const BoxConstraints(minWidth: double.infinity),
+        backgroundColor: kSecondaryColor,
+        enableDrag: false,
+        dragHandleSize: const Size(100, 4),
+        showDragHandle: true,
+        dragHandleColor: primaryColor,
+        builder: (context) {
+          return SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: 0.3.sh,
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      message,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: primaryColor,
+                        fontFamily: StringConst.mainFont,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 2.sh,
+                ),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: MainCustomButton(
+                      buttonName: "Try Again",
+                      isEnabled: true,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 7.sw,
+                        vertical: 2.sw,
+                      ),
+                      backgroundColor: primaryColor,
+                      onPressed: onPress),
+                ),
+                SizedBox(
+                  height: 2.sh,
+                ),
+              ],
+            ),
+          );
+        },
+        onClosing: () {},
+      );
+    },
+  );
+}
+
+void showAlertDialog(
+    String title, String message, BuildContext context, VoidCallback cancel, VoidCallback yes) {
+  showModalBottomSheet(
+    isDismissible: false,
+    backgroundColor: kErrorColor,
+    context: context,
+    enableDrag: false,
+    constraints: const BoxConstraints(minWidth: double.infinity),
+    builder: (BuildContext context) {
+      return BottomSheet(
+        constraints: const BoxConstraints(minWidth: double.infinity),
+        backgroundColor: kErrorColor,
+        enableDrag: false,
+        dragHandleSize: const Size(100, 4),
+        showDragHandle: true,
+        dragHandleColor: Colors.white,
+        builder: (context) {
+          return SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: 0.3.sh,
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
+                        color: kSecondaryColor,
+                        fontFamily: StringConst.mainFont,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 0.3.sh,
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      message,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        fontFamily: StringConst.mainFont,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 2.sh,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: MainCustomButton(
+                          buttonName: "Cancel",
+                          isEnabled: true,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 7.sw,
+                            vertical: 1.5.sw,
+                          ),
+                          backgroundColor: Colors.white,
+                          onPressed: cancel),
+                    ),
+                    SizedBox(width:4.sw),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: MainCustomButton(
+                          buttonName: "Yes",
+                          isEnabled: true,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 9.sw,
+                            vertical: 1.5.sw,
+                          ),
+                          backgroundColor: Colors.white,
+                          onPressed: yes),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 4.sh,
+                ),
+              ],
+            ),
+          );
+        },
+        onClosing: () {},
+      );
+    },
+  );
+}

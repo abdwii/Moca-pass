@@ -44,7 +44,7 @@ class GSSORepo{
       Map<String, dynamic> result = jsonDecode(response.body);
       debugPrint(result.toString());
       GSSOResponse gssoResponse = GSSOResponse.fromJson(result);
-      SessionManagement.createSession(token: gssoResponse.data.jwtToken, role: gssoResponse.data.role);
+      // SessionManagement.createSession(token: gssoResponse.data.jwtToken, role: gssoResponse.data.role);
       return gssoResponse;
     }
     catch (e){

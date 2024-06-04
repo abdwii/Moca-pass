@@ -12,52 +12,48 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        const Duration(
-          seconds: 1,
-        ), () {
-      Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
+    Timer(const Duration(
+      seconds: 1,
+    ), () {
       if (SessionManagement.getUserToken() != null &&
           SessionManagement.getUserToken()!.isNotEmpty) {
         Log.info("Token : ${SessionManagement.getUserToken()}");
-        /*AutoRouter.of(context).replace(
-          OnboardingRoute(route: MainRoute()),
-        );*/
+        Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
       } else {
-        /*AutoRouter.of(context).replace(
-          OnboardingRoute(route: const LoginRoute()),
-        );*/
+        Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
       }
     });
     var deviceType = getDeviceType(MediaQuery.of(context).size);
 
     return Scaffold(
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(0.49, 0.87),
-            end: Alignment(-0.49, -0.87),
-            colors: [
-              primaryColor,
-              Color(0xFFFD00E2),
-            ],
-          ),
-        ),
-        child:deviceType==DeviceScreenType.tablet||deviceType ==DeviceScreenType.desktop? Image.asset(
-          AssetsData.splash,
-          fit: BoxFit.fitWidth,
           height: double.infinity,
-        ):Padding(
-          padding:  EdgeInsets.symmetric(vertical: 35.sw),
-          child: Image.asset(
-            AssetsData.splash,
-            fit: BoxFit.cover,
-            height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment(0.49, 0.87),
+              end: Alignment(-0.49, -0.87),
+              colors: [
+                primaryColor,
+                Color(0xFFFD00E2),
+              ],
+            ),
           ),
-        )
-      ),
+          child: deviceType == DeviceScreenType.tablet ||
+                  deviceType == DeviceScreenType.desktop
+              ? Image.asset(
+                  AssetsData.splash,
+                  fit: BoxFit.fitWidth,
+                  height: double.infinity,
+                )
+              : Padding(
+                  padding: EdgeInsets.symmetric(vertical: 35.sw),
+                  child: Image.asset(
+                    AssetsData.splash,
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                  ),
+                )),
     );
   }
 }

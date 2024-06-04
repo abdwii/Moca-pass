@@ -13,4 +13,8 @@ class AssetsData {
   static const String group3 = "${(src)}/Group3.svg";
   static const String mocaGirl = "${(src)}/moca_girl.svg";
   static const String splash = "${(src)}/splas.png";
+  static const String camera = "${(src)}/cameraIcon.svg";
+  static const String scanPassTitle = "${(src)}/scanPassTitle.svg";
+  static const String logout = "${(src)}/logoutIcon.svg";
+  static const String scanImage = "${(src)}/scanImage.svg";
 }

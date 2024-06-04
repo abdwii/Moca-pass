@@ -44,9 +44,34 @@ final themeData = ThemeData(
 
 final textFormFieldBorderStyle = OutlineInputBorder(
   borderRadius: BorderRadius.circular(30.sw),
-  borderSide: const BorderSide(width: 1.5, color: kDividerColor),
+  borderSide: const BorderSide(width: 1.5, color: Colors.white),
 );
+final textFormFieldErrorBorderStyle = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(30.sw),
+  borderSide: const BorderSide(width: 1.5, color: kErrorColor),
+);
+EdgeInsetsGeometry getLoginHPadding(
+    bool isTablet, Orientation deviceOrientation) {
+  if (isTablet && Orientation.portrait == deviceOrientation) {
+    return EdgeInsets.symmetric(horizontal: 28.sw);
+  } else if (isTablet && Orientation.landscape == deviceOrientation) {
+    return EdgeInsets.symmetric(horizontal: 50.sw);
+  } else {
+    return EdgeInsets.symmetric(horizontal: 6.sw);
+  }
+}
 
+
+EdgeInsetsGeometry getMainHPadding(
+    bool isTablet, Orientation deviceOrientation) {
+  if (isTablet && Orientation.portrait == deviceOrientation) {
+    return EdgeInsets.symmetric(horizontal: 25.sw);
+  } else if (isTablet && Orientation.landscape == deviceOrientation) {
+    return EdgeInsets.symmetric(horizontal: 40.sw);
+  } else {
+    return EdgeInsets.symmetric(horizontal: 6.sw);
+  }
+}
 
 
 TextStyle textInputsLabelStyle() {
@@ -55,4 +80,19 @@ TextStyle textInputsLabelStyle() {
       fontFamily: StringConst.mainFont,
       fontWeight: FontWeight.w300,
       fontSize: 2.sw);
+}
+
+TextStyle secondaryCustomButtonTextStyle() {
+  return const TextStyle(
+      color: primaryColor,
+      fontFamily: StringConst.mainFont,
+      fontWeight: FontWeight.w600,
+      fontSize: 32);
+}
+TextStyle scannerInfoTextStyle() {
+  return const TextStyle(
+      color: Colors.white,
+      fontFamily: StringConst.mainFont,
+      fontWeight: FontWeight.w500,
+      fontSize: 36);
 }
