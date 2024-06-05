@@ -16,19 +16,19 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getData() async {
     emit(HomeLoading());
-    final call = await APICaller(APICallerConfiguration.baseUrl).call(
-      endpoint: Endpoints.eventHome,
-      method: APIMethods.get,
-      options: Options(headers: {
-        "Authorization": "Bearer ${SessionManagement.getUserToken()}"
-      }),
-    );
-
-    call.fold(
-      (l) => EasyLoading.showError(l),
-      (response) {
-
-      },
-    );
+    // final call = await APICaller(APICallerConfiguration.baseUrl).call(
+    //   endpoint: Endpoints.eventHome,
+    //   method: APIMethods.get,
+    //   options: Options(headers: {
+    //     "Authorization": "Bearer ${SessionManagement.getUserToken()}"
+    //   }),
+    // );
+    //
+    // call.fold(
+    //   (l) => EasyLoading.showError(l),
+    //   (response) {
+    //
+    //   },
+    // );
   }
 }

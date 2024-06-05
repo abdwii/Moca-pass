@@ -1,22 +1,23 @@
+import 'package:MocaPass/core/api/app_configs/app_config.dart';
 import 'package:MocaPass/features/auth/login/model/login_pojo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../../../core/api/api_caller.dart';
-import '../../../../../core/api/constants/api_caller_config.dart';
 import '../../../../../core/api/constants/endpoints.dart';
 import '../../../../../core/api/constants/methods.dart';
 import '../../../../../core/local_data/session_management.dart';
+
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-   String email;
-   String password;
+  String email;
+  String password;
 
-   LoginCubit(this.email, this.password) : super(LoginStateInitial());
+  LoginCubit(this.email, this.password) : super(LoginStateInitial());
 
-  final APICaller _apiCaller = APICaller(APICallerConfiguration.baseDebugUrl);
+  final APICaller _apiCaller = APICaller(AppConfig.authBaseUrl);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> signIn() async {
@@ -38,8 +39,7 @@ class LoginCubit extends Cubit<LoginState> {
         if (response.succeeded == true) {
           LoginPojo loginModel = LoginPojo.fromJson(response.data);
 
-          SessionManagement.createSession(
-              token: loginModel.jwToken ?? "");
+          SessionManagement.createSession(token: loginModel.jwToken ?? "");
           EasyLoading.dismiss();
           emit(LoginStateLoaded());
         } else {
@@ -59,7 +59,7 @@ class LoginCubit extends Cubit<LoginState> {
     final RegExp emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     );
-    if(email==null) {
+    if (email == null) {
       return this.email.isNotEmpty && emailRegex.hasMatch(this.email)
           ? true
           : false;
@@ -68,7 +68,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  bool isValidForm(String email,String password) {
+  bool isValidForm(String email, String password) {
     return isValidEmail(email) && isValidPassword(password);
   }
 }
