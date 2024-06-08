@@ -20,7 +20,7 @@ final themeData = ThemeData(
     )),
     textButtonTheme: const TextButtonThemeData(
       style: ButtonStyle(
-        textStyle: WidgetStatePropertyAll(
+        textStyle: MaterialStatePropertyAll(
           TextStyle(
             color: primaryColor,
             fontSize: 48,
@@ -32,11 +32,11 @@ final themeData = ThemeData(
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-        elevation: WidgetStatePropertyAll(0),
-        backgroundColor: WidgetStatePropertyAll(Colors.white),
-        foregroundColor: WidgetStatePropertyAll(Colors.black),
-        padding: WidgetStatePropertyAll(EdgeInsets.zero),
-        shape: WidgetStatePropertyAll(StadiumBorder()),
+        elevation: MaterialStatePropertyAll(0),
+        backgroundColor: MaterialStatePropertyAll(Colors.white),
+        foregroundColor: MaterialStatePropertyAll(Colors.black),
+        padding: MaterialStatePropertyAll(EdgeInsets.zero),
+        shape: MaterialStatePropertyAll(StadiumBorder()),
       ),
     ),
     fontFamily: StringConst.mainFont);

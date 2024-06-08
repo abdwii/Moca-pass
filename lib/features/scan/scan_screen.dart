@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:MocaPass/core/local_data/session_management.dart';
 import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
@@ -8,20 +10,44 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class ScanPage extends StatelessWidget {
+class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
+
+  @override
+  State<ScanPage> createState() => _ScanPageState();
+}
+
+class _ScanPageState extends State<ScanPage> {
+  late MobileScannerController controller;
+
+  @override
+  void initState() {
+    controller = MobileScannerController(
+        detectionSpeed: DetectionSpeed.noDuplicates,
+        facing:
+            SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
+                    0
+                ? CameraFacing.front
+                : CameraFacing.back,
+        torchEnabled: false,
+        useNewCameraSelector: true);
+    controller.start(cameraFacingOverride:SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
+        0
+        ? CameraFacing.front
+        : CameraFacing.back);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
-    var deviceOrientation = (MediaQuery.of(context).orientation);
     var isTablet = deviceType == DeviceScreenType.tablet ||
         deviceType == DeviceScreenType.desktop;
     return Stack(
-
       alignment: Alignment.topCenter,
       children: [
         AiBarcodeScanner(
+          canPop: false,
           bottomBar: Container(
             color: Colors.transparent,
             height: 0,
@@ -29,19 +55,15 @@ class ScanPage extends StatelessWidget {
           borderRadius: 21,
           borderColor: primaryColor,
           borderWidth: 3.5.sh,
-          controller: MobileScannerController(
-              detectionSpeed: DetectionSpeed.noDuplicates,
-              facing: SessionManagement.getCamFacing(
-                          SessionManagement.cameraFacingKey) == 0
-                  ? CameraFacing.front
-                  : CameraFacing.back,
-              torchEnabled: false,
-              useNewCameraSelector: false),
+          controller: controller,
           onDetect: (capture) {},
           onScan: (capture) {
             // handleBarcodeScanning(scan, capture);
             Logger().i(capture);
-            Navigator.pushNamed(context,Routes.scanSuccessScreen);
+            Timer(const Duration(milliseconds: 500), () {
+              Navigator.of(context).pushNamed(Routes.scanSuccessScreen);
+              controller.stop();
+            });
           },
         ),
         Column(
@@ -83,5 +105,12 @@ class ScanPage extends StatelessWidget {
         )
       ],
     );
+  }
+  @override
+  void dispose() {
+
+    controller.stop();
+    controller.dispose();
+    super.dispose();
   }
 }

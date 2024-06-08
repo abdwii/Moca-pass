@@ -8,7 +8,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg.dart';
 
 import '../../core/presentation/routes/routes_manager.dart';
-import '../../core/presentation/widgets/app_background.dart';
 import '../../core/utility/assets_data.dart';
 import '../../core/utility/theme.dart';
 
@@ -21,8 +20,8 @@ class ScanSuccessPage extends StatelessWidget {
     var deviceOrientation = (MediaQuery.of(context).orientation);
     var isTablet = deviceType == DeviceScreenType.tablet ||
         deviceType == DeviceScreenType.desktop;
-    Timer(const Duration(seconds: 5), (){
-      Navigator.of(context).popUntil(ModalRoute.withName(Routes.scanScreen));
+    Timer(const Duration(seconds: 2), (){
+      Navigator.of(context).pushReplacementNamed(Routes.accessScreen);
     });
     return Scaffold(
       body: SafeArea(
