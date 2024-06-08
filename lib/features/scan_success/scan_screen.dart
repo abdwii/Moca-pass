@@ -47,6 +47,7 @@ class ScanSuccessPage extends StatelessWidget {
                 ),
                 Image.asset(
                   AssetsData.scanAnime,
+                  width: isTablet ? 37.sw : 90.sw,
                 ),
                  Text(
                   "Scan Successful\nEnjoy your Day!",
