@@ -20,6 +20,9 @@ class MainCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var deviceType = getDeviceType(MediaQuery.of(context).size);
+    // var isTablet = deviceType == DeviceScreenType.tablet ||
+    //     deviceType == DeviceScreenType.desktop;
     return MaterialButton(
       elevation: 0,
       hoverElevation: 0,
@@ -38,7 +41,7 @@ class MainCustomButton extends StatelessWidget {
             color: backgroundColor == primaryColor
                 ? kSecondaryColor
                 : primaryColor,
-            fontSize: 3.sw),
+            fontSize: 18),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -21,18 +20,26 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
 
   // initLocator();
-  runApp(DevicePreview(
-      enabled: false,
-      builder: (context) {
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => LoginCubit("", ""),
-            ),
-          ],
-          child: const AppWidget(),
-        );
-      }));
+  // runApp(DevicePreview(
+  //     enabled: false,
+  //     builder: (context) {
+  //       return MultiBlocProvider(
+  //         providers: [
+  //           BlocProvider(
+  //             create: (context) => LoginCubit("", ""),
+  //           ),
+  //         ],
+  //         child: const AppWidget(),
+  //       );
+  //     }));
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => LoginCubit("", ""),
+      ),
+    ],
+    child: const AppWidget(),
+  ));
 }
 
 void configLoading() {

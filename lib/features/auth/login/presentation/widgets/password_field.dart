@@ -97,7 +97,7 @@ class _PasswordFieldState extends State<PasswordField> {
             focusedErrorBorder: textFormFieldErrorBorderStyle,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             label: const Text(
-              'Password',
+              StringConst.password,
             ),
             labelStyle: textInputsLabelStyle(),
             filled: true,

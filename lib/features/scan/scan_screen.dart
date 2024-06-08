@@ -1,4 +1,5 @@
 import 'package:MocaPass/core/local_data/session_management.dart';
+import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:MocaPass/core/utility/strings.dart';
 import 'package:MocaPass/core/utility/theme.dart';
@@ -12,7 +13,12 @@ class ScanPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    var deviceOrientation = (MediaQuery.of(context).orientation);
+    var isTablet = deviceType == DeviceScreenType.tablet ||
+        deviceType == DeviceScreenType.desktop;
     return Stack(
+
       alignment: Alignment.topCenter,
       children: [
         AiBarcodeScanner(
@@ -35,6 +41,7 @@ class ScanPage extends StatelessWidget {
           onScan: (capture) {
             // handleBarcodeScanning(scan, capture);
             Logger().i(capture);
+            Navigator.pushNamed(context,Routes.scanSuccessScreen);
           },
         ),
         Column(
@@ -57,7 +64,7 @@ class ScanPage extends StatelessWidget {
                     SizedBox(width: 0.5.sw),
                     Text(
                       StringConst.back,
-                      style: scannerInfoTextStyle(),
+                      style: scannerInfoTextStyle(isTablet),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -68,7 +75,7 @@ class ScanPage extends StatelessWidget {
               padding: EdgeInsets.only(top: 10.sh),
               child: Text(
                 StringConst.scanInfoText,
-                style: scannerInfoTextStyle(),
+                style: scannerInfoTextStyle(isTablet),
                 textAlign: TextAlign.center,
               ),
             )

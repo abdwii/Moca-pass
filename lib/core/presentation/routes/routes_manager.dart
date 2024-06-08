@@ -1,4 +1,5 @@
 import 'package:MocaPass/features/scan/scan_screen.dart';
+import 'package:MocaPass/features/scan_success/scan_screen.dart';
 
 import '../../../features/access/access_type.dart';
 import '../../../features/auth/login/presentation/login_page.dart';
@@ -16,6 +17,7 @@ class Routes {
   static const String mainScreen = "/mainScreen";
   static const String accessScreen = "/accessScreen";
   static const String scanScreen = "/scanScreen";
+  static const String scanSuccessScreen = "/scanSuccessScreen";
 }
 
 class RouteGenerator {
@@ -33,6 +35,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AccessTypePage());
       case Routes.scanScreen:
         return MaterialPageRoute(builder: (_) => const ScanPage());
+      case Routes.scanSuccessScreen:
+        return MaterialPageRoute(builder: (_) => const ScanSuccessPage());
       default:
         return unDefinedRoute();
     }

@@ -35,7 +35,8 @@ class EmailField extends StatelessWidget {
         textAlign: TextAlign.start,
         decoration: InputDecoration(
           fillColor: Colors.transparent,
-          errorStyle: const TextStyle(color: kErrorColor),
+          errorStyle: const TextStyle(color: kErrorColor,fontFamily:StringConst.mainFont,fontWeight:FontWeight.w400 ,fontSize:10 ),
+          labelStyle:textInputsLabelStyle(),
           prefixIcon: Padding(
             padding: EdgeInsets.symmetric(vertical: 3.sw, horizontal: 3.sw),
             child: SvgPicture.asset(
@@ -71,9 +72,8 @@ class EmailField extends StatelessWidget {
           focusedErrorBorder: textFormFieldErrorBorderStyle,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           label: const Text(
-            'Email',
+            StringConst.email,
           ),
-          labelStyle: textInputsLabelStyle(),
           filled: false,
         ),
         textInputAction: TextInputAction.next,

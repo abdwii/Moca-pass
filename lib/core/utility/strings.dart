@@ -3,6 +3,8 @@ class StringConst {
   static const String mainFont = "GTWalsheimPro";
   static const String login = "Login";
   static const String homeLabel = "Assign which camera to use for this device";
+  static const String email = "Email";
+  static const String password = "Password";
   static const String Continue = "Continue";
   static const String frontCam = "Front Camera";
   static const String backCam = "Back Camera";
@@ -11,4 +13,7 @@ class StringConst {
   static const String scanOut = "Scan Out";
   static const String scanInfoText =
       "Align the QR Code within\nthe frame to scan.";
+  static const String tryAgain = "Try Again";
+  static const String cancel = "Cancel";
+  static const String yes = "Yes";
 }

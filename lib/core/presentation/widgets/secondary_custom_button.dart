@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:svg_flutter/svg.dart';
 
 import '../../utility/assets_data.dart';
@@ -26,6 +28,9 @@ class SecondaryCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    var isTablet = deviceType == DeviceScreenType.tablet ||
+        deviceType == DeviceScreenType.desktop;
     return MaterialButton(
       elevation: 0,
       hoverElevation: 0,
@@ -51,7 +56,7 @@ class SecondaryCustomButton extends StatelessWidget {
           const Spacer(
             flex: 1,
           ),
-          Text(text, style: secondaryCustomButtonTextStyle()),
+          Text(text, style: secondaryCustomButtonTextStyle(isTablet)),
           const Spacer(
             flex: 3,
           ),

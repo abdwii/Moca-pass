@@ -1,46 +1,45 @@
 import '../../core/utility/colors_data.dart';
 import '../../core/utility/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 final themeData = ThemeData(
-  useMaterial3: true,
-  appBarTheme: const AppBarTheme(
-      backgroundColor: primaryColor,
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      centerTitle: true),
-  scaffoldBackgroundColor: primaryColor,
-  textTheme: const TextTheme(labelLarge:  TextStyle(
-    color: Colors.white,
-    fontSize: 64,
-    fontFamily: StringConst.mainFont,
-    fontWeight: FontWeight.w500,
-  )),
-  textButtonTheme: const TextButtonThemeData(
-    style: ButtonStyle(
-      textStyle: MaterialStatePropertyAll(
-        TextStyle(
-          color: primaryColor,
-          fontSize: 48,
-          fontFamily: StringConst.mainFont,
-          fontWeight: FontWeight.w500,
+    useMaterial3: true,
+    appBarTheme: const AppBarTheme(
+        backgroundColor: primaryColor,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        centerTitle: true),
+    scaffoldBackgroundColor: primaryColor,
+    textTheme: const TextTheme(
+        labelLarge: TextStyle(
+      color: Colors.white,
+      fontSize: 64,
+      fontFamily: StringConst.mainFont,
+      fontWeight: FontWeight.w500,
+    )),
+    textButtonTheme: const TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: WidgetStatePropertyAll(
+          TextStyle(
+            color: primaryColor,
+            fontSize: 48,
+            fontFamily: StringConst.mainFont,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     ),
-  ),
-  elevatedButtonTheme: const ElevatedButtonThemeData(
-    style: ButtonStyle(
-      elevation: MaterialStatePropertyAll(0),
-      backgroundColor: MaterialStatePropertyAll(Colors.white),
-      foregroundColor: MaterialStatePropertyAll(Colors.black),
-      padding: MaterialStatePropertyAll(EdgeInsets.zero),
-      shape: MaterialStatePropertyAll( StadiumBorder()),
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+      style: ButtonStyle(
+        elevation: WidgetStatePropertyAll(0),
+        backgroundColor: WidgetStatePropertyAll(Colors.white),
+        foregroundColor: WidgetStatePropertyAll(Colors.black),
+        padding: WidgetStatePropertyAll(EdgeInsets.zero),
+        shape: WidgetStatePropertyAll(StadiumBorder()),
+      ),
     ),
-  ),
-  fontFamily: StringConst.mainFont
-);
+    fontFamily: StringConst.mainFont);
 
 final textFormFieldBorderStyle = OutlineInputBorder(
   borderRadius: BorderRadius.circular(30.sw),
@@ -50,6 +49,7 @@ final textFormFieldErrorBorderStyle = OutlineInputBorder(
   borderRadius: BorderRadius.circular(30.sw),
   borderSide: const BorderSide(width: 1.5, color: kErrorColor),
 );
+
 EdgeInsetsGeometry getLoginHPadding(
     bool isTablet, Orientation deviceOrientation) {
   if (isTablet && Orientation.portrait == deviceOrientation) {
@@ -60,7 +60,6 @@ EdgeInsetsGeometry getLoginHPadding(
     return EdgeInsets.symmetric(horizontal: 6.sw);
   }
 }
-
 
 EdgeInsetsGeometry getMainHPadding(
     bool isTablet, Orientation deviceOrientation) {
@@ -73,26 +72,26 @@ EdgeInsetsGeometry getMainHPadding(
   }
 }
 
-
 TextStyle textInputsLabelStyle() {
-  return TextStyle(
+  return const TextStyle(
       color: Colors.white,
       fontFamily: StringConst.mainFont,
-      fontWeight: FontWeight.w300,
-      fontSize: 2.sw);
+      fontWeight: FontWeight.w400,
+      fontSize: 18);
 }
 
-TextStyle secondaryCustomButtonTextStyle() {
-  return const TextStyle(
+TextStyle secondaryCustomButtonTextStyle(bool isTablet) {
+  return TextStyle(
       color: primaryColor,
       fontFamily: StringConst.mainFont,
       fontWeight: FontWeight.w600,
-      fontSize: 32);
+      fontSize: isTablet ? 22 : 20);
 }
-TextStyle scannerInfoTextStyle() {
-  return const TextStyle(
+
+TextStyle scannerInfoTextStyle(bool isTablet) {
+  return TextStyle(
       color: Colors.white,
       fontFamily: StringConst.mainFont,
       fontWeight: FontWeight.w500,
-      fontSize: 36);
+      fontSize: isTablet ? 28 : 20);
 }

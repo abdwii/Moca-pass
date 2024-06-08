@@ -1,5 +1,4 @@
 import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
-import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../../core/presentation/widgets/app_background.dart';
@@ -16,14 +15,9 @@ import 'package:svg_flutter/svg.dart';
 import '../../../../core/utility/strings.dart';
 import '../application/cubit/login_cubit.dart';
 
-class LoginBody extends StatefulWidget {
-  const LoginBody({super.key});
+class LoginBody extends StatelessWidget {
+   LoginBody({super.key});
 
-  @override
-  State<LoginBody> createState() => _LoginBodyState();
-}
-
-class _LoginBodyState extends State<LoginBody> {
   bool isObscureText = true;
 
   @override
@@ -49,7 +43,6 @@ class _LoginBodyState extends State<LoginBody> {
               },
               builder: (context, state) {
                 final cubit = BlocProvider.of<LoginCubit>(context);
-                print(cubit.isValidForm(cubit.email, cubit.password));
                 return Form(
                   key: cubit.formKey,
                   child: Column(

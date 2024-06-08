@@ -1,7 +1,6 @@
 import 'package:MocaPass/core/presentation/widgets/main_custom_button.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../utility/strings.dart';
@@ -37,7 +36,7 @@ void showErrorDialog(
                     child: Text(
                       message,
                       style: const TextStyle(
-                        fontSize: 24,
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: primaryColor,
                         fontFamily: StringConst.mainFont,
@@ -52,7 +51,7 @@ void showErrorDialog(
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   child: MainCustomButton(
-                      buttonName: "Try Again",
+                      buttonName: StringConst.tryAgain,
                       isEnabled: true,
                       padding: EdgeInsets.symmetric(
                         horizontal: 7.sw,
@@ -83,6 +82,9 @@ void showAlertDialog(
     enableDrag: false,
     constraints: const BoxConstraints(minWidth: double.infinity),
     builder: (BuildContext context) {
+      // var deviceType = getDeviceType(MediaQuery.of(context).size);
+      // var isTablet = deviceType == DeviceScreenType.tablet ||
+      //     deviceType == DeviceScreenType.desktop;
       return BottomSheet(
         constraints: const BoxConstraints(minWidth: double.infinity),
         backgroundColor: kErrorColor,
@@ -104,8 +106,8 @@ void showAlertDialog(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       title,
-                      style: const TextStyle(
-                        fontSize: 28,
+                      style:  const TextStyle(
+                        fontSize: 22,
                         fontWeight: FontWeight.w500,
                         color: kSecondaryColor,
                         fontFamily: StringConst.mainFont,
@@ -123,7 +125,7 @@ void showAlertDialog(
                     child: Text(
                       message,
                       style: const TextStyle(
-                        fontSize: 24,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                         fontFamily: StringConst.mainFont,
@@ -142,7 +144,7 @@ void showAlertDialog(
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: MainCustomButton(
-                          buttonName: "Cancel",
+                          buttonName: StringConst.cancel,
                           isEnabled: true,
                           padding: EdgeInsets.symmetric(
                             horizontal: 7.sw,
@@ -155,7 +157,7 @@ void showAlertDialog(
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: MainCustomButton(
-                          buttonName: "Yes",
+                          buttonName: StringConst.yes,
                           isEnabled: true,
                           padding: EdgeInsets.symmetric(
                             horizontal: 9.sw,
