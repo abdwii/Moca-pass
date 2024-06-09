@@ -20,7 +20,7 @@ class ScanSuccessPage extends StatelessWidget {
     var deviceOrientation = (MediaQuery.of(context).orientation);
     var isTablet = deviceType == DeviceScreenType.tablet ||
         deviceType == DeviceScreenType.desktop;
-    Timer(const Duration(seconds: 2), (){
+    Timer(const Duration(seconds: 4), () {
       Navigator.of(context).pushReplacementNamed(Routes.accessScreen);
     });
     return Scaffold(
@@ -48,13 +48,13 @@ class ScanSuccessPage extends StatelessWidget {
                   AssetsData.scanAnime,
                   width: isTablet ? 37.sw : 90.sw,
                 ),
-                 Text(
+                Text(
                   "Scan Successful\nEnjoy your Day!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringConst.mainFont,
                       fontWeight: FontWeight.w500,
-                      fontSize: isTablet?48:28,
+                      fontSize: isTablet ? 48 : 28,
                       color: kSecondaryColor),
                 )
               ],

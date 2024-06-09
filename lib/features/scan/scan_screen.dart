@@ -31,10 +31,12 @@ class _ScanPageState extends State<ScanPage> {
                 : CameraFacing.back,
         torchEnabled: false,
         useNewCameraSelector: true);
-    controller.start(cameraFacingOverride:SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
-        0
-        ? CameraFacing.front
-        : CameraFacing.back);
+    controller.start(
+        cameraFacingOverride:
+            SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
+                    0
+                ? CameraFacing.front
+                : CameraFacing.back);
     super.initState();
   }
 
@@ -47,11 +49,11 @@ class _ScanPageState extends State<ScanPage> {
       alignment: Alignment.topCenter,
       children: [
         AiBarcodeScanner(
-          canPop: false,
           bottomBar: Container(
             color: Colors.transparent,
             height: 0,
           ),
+          overlayColor: kOverlayColor,
           borderRadius: 21,
           borderColor: primaryColor,
           borderWidth: 3.5.sh,
@@ -60,7 +62,7 @@ class _ScanPageState extends State<ScanPage> {
           onScan: (capture) {
             // handleBarcodeScanning(scan, capture);
             Logger().i(capture);
-            Timer(const Duration(milliseconds: 500), () {
+            Timer(const Duration(milliseconds: 250), () {
               Navigator.of(context).pushNamed(Routes.scanSuccessScreen);
               controller.stop();
             });
@@ -106,9 +108,9 @@ class _ScanPageState extends State<ScanPage> {
       ],
     );
   }
+
   @override
   void dispose() {
-
     controller.stop();
     controller.dispose();
     super.dispose();
