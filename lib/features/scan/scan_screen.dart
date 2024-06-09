@@ -45,10 +45,13 @@ class _ScanPageState extends State<ScanPage> {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var isTablet = deviceType == DeviceScreenType.tablet ||
         deviceType == DeviceScreenType.desktop;
+    var deviceOrientation = (MediaQuery.of(context).orientation);
+
     return Stack(
       alignment: Alignment.topCenter,
       children: [
         AiBarcodeScanner(
+          canPop: false,
           bottomBar: Container(
             color: Colors.transparent,
             height: 0,
@@ -96,7 +99,7 @@ class _ScanPageState extends State<ScanPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.sh),
+              padding: EdgeInsets.only(top: deviceOrientation==Orientation.portrait?10.sh:2.5.sh),
               child: Text(
                 StringConst.scanInfoText,
                 style: scannerInfoTextStyle(isTablet),

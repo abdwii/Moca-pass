@@ -72,7 +72,7 @@ class AccessTypePage extends StatelessWidget {
                         ),
                         Gap(2.sh),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.sw),
+                          padding: EdgeInsets.symmetric(horizontal: 9.sw),
                           child: Column(
                             children: [
                               SecondaryCustomButton(
