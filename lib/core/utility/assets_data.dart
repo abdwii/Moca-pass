@@ -18,4 +18,5 @@ class AssetsData {
   static const String logout = "${(src)}/logoutIcon.svg";
   static const String scanImage = "${(src)}/scanImage.svg";
   static const String scanAnime = "${(src)}/scan_anim.gif";
+  static const String m = "${(src)}/m.svg";
 }

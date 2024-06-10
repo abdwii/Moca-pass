@@ -2,7 +2,7 @@ import 'package:MocaPass/core/api/app_configs/app_config.dart';
 import 'package:MocaPass/features/auth/login/model/login_pojo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../../core/api/api_caller.dart';
 import '../../../../../core/api/constants/endpoints.dart';
@@ -20,8 +20,9 @@ class LoginCubit extends Cubit<LoginState> {
   final APICaller _apiCaller = APICaller(AppConfig.authBaseUrl);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Future<void> signIn() async {
-    EasyLoading.show();
+  Future<void> signIn(BuildContext context) async {
+    // EasyLoading.show();
+    showLoader(context);
     final call = await _apiCaller.call(
       endpoint: Endpoints.login,
       method: APIMethods.post,
@@ -32,19 +33,19 @@ class LoginCubit extends Cubit<LoginState> {
     );
     call.fold(
       (failure) {
-        EasyLoading.showError(failure.toString());
-        emit(LoginStateError(message: "Error !"));
+        emit(LoginStateError(message: failure.toString()));
+        hideLoader(context);
       },
       (response) {
         if (response.succeeded == true) {
           LoginPojo loginModel = LoginPojo.fromJson(response.data);
-
           SessionManagement.createSession(token: loginModel.jwToken ?? "");
-          EasyLoading.dismiss();
           emit(LoginStateLoaded());
+          hideLoader(context);
         } else {
-          EasyLoading.showError(response.message ?? "Error !");
-          emit(LoginStateError(message: response.message ?? "Error !"));
+          // EasyLoading.showError(response.message ?? "Error !");
+          hideLoader(context);
+          emit(LoginStateError(message: response.errors.toString()));
         }
       },
     );
@@ -70,5 +71,13 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool isValidForm(String email, String password) {
     return isValidEmail(email) && isValidPassword(password);
+  }
+
+  void showLoader(BuildContext context) {
+    context.loaderOverlay.show();
+  }
+
+  void hideLoader(BuildContext context) {
+    context.loaderOverlay.hide();
   }
 }

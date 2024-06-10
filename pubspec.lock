@@ -57,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  back_button_interceptor:
+    dependency: transitive
+    description:
+      name: back_button_interceptor
+      sha256: "8354b03320043db546e3f446af171faaa71384100486444113628f7db1e7fe9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.3"
   bloc:
     dependency: "direct main"
     description:
@@ -524,10 +532,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: b1ac0fe2832c9cc95e5e88b57d627c5e68c223b9657f4b96e1487aa9098c7b82
+      sha256: "5b1726fee554d1cc9db1baef8061b126567ff0a1140a03ed7de936e62f2ab98b"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.1"
+    version: "6.2.0"
   graphs:
     dependency: transitive
     description:
@@ -720,6 +728,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  loader_overlay:
+    dependency: "direct main"
+    description:
+      name: loader_overlay
+      sha256: "02deeeed0d4eaaeeada6ce7bb13426d7548acad1f71e4884ec4a010e0e4824d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   logger:
     dependency: "direct main"
     description:
@@ -1263,4 +1279,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.0 <4.0.0"
-  flutter: ">=3.19.2"
+  flutter: ">=3.19.0"
