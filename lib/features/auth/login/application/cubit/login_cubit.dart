@@ -8,6 +8,7 @@ import '../../../../../core/api/api_caller.dart';
 import '../../../../../core/api/constants/endpoints.dart';
 import '../../../../../core/api/constants/methods.dart';
 import '../../../../../core/local_data/session_management.dart';
+import '../../../../../core/presentation/widgets/loader_controller.dart';
 
 part 'login_state.dart';
 
@@ -21,8 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> signIn(BuildContext context) async {
-    // EasyLoading.show();
-    showLoader(context);
+    emit(LoginStateLoading());
     final call = await _apiCaller.call(
       endpoint: Endpoints.login,
       method: APIMethods.post,
@@ -34,17 +34,13 @@ class LoginCubit extends Cubit<LoginState> {
     call.fold(
       (failure) {
         emit(LoginStateError(message: failure.toString()));
-        hideLoader(context);
       },
       (response) {
         if (response.succeeded == true) {
           LoginPojo loginModel = LoginPojo.fromJson(response.data);
           SessionManagement.createSession(token: loginModel.jwToken ?? "");
           emit(LoginStateLoaded());
-          hideLoader(context);
         } else {
-          // EasyLoading.showError(response.message ?? "Error !");
-          hideLoader(context);
           emit(LoginStateError(message: response.errors.toString()));
         }
       },
@@ -71,13 +67,5 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool isValidForm(String email, String password) {
     return isValidEmail(email) && isValidPassword(password);
-  }
-
-  void showLoader(BuildContext context) {
-    context.loaderOverlay.show();
-  }
-
-  void hideLoader(BuildContext context) {
-    context.loaderOverlay.hide();
   }
 }

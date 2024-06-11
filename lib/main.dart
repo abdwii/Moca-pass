@@ -1,3 +1,4 @@
+import 'package:MocaPass/features/scan/cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -13,7 +14,7 @@ import 'core/local_data/session_management.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppConfig.environment = Environment.development;
+  AppConfig.environment = Environment.staging;
   Logger().i(
       "\nBaseURl = ${AppConfig.baseUrl},\nauthURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
   await SessionManagement.init();
@@ -38,6 +39,7 @@ Future<void> main() async {
       BlocProvider(
         create: (context) => LoginCubit("", ""),
       ),
+      BlocProvider(create: (context) => ScanCubit())
     ],
     child: const AppWidget(),
   ));

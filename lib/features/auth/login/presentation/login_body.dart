@@ -2,9 +2,12 @@ import 'dart:ui';
 
 import 'package:MocaPass/core/presentation/app_bottom_sheets.dart';
 import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
+import 'package:MocaPass/core/presentation/widgets/loader_controller.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -67,14 +70,19 @@ class LoginBody extends StatelessWidget {
           child: Padding(
             padding: getLoginHPadding(isTablet, deviceOrientation),
             child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: BlocConsumer<LoginCubit, LoginState>(
                 listener: (context, state) {
+                  if(state is LoginStateLoading) {
+                    showLoader(context);
+                  }
                   if (state is LoginStateLoaded) {
+                    hideLoader(context);
                     Navigator.of(context)
                         .pushReplacementNamed(Routes.mainScreen);
                   }
                   if (state is LoginStateError) {
+                    hideLoader(context);
                     showErrorDialog(state.message, context, () {
                       BlocProvider.of<LoginCubit>(context).signIn(context);
                       Navigator.of(context).pop();
@@ -168,6 +176,7 @@ class LoginBody extends StatelessWidget {
                             ),
                             onPressed: () async {
                               if (cubit.formKey.currentState!.validate()) {
+                                SystemChannels.textInput.invokeMethod('TextInput.hide');
                                 cubit.formKey.currentState!.save();
                                 cubit.signIn(context);
                               }

@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:MocaPass/core/local_data/session_management.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 
 import '../debugging/log.dart';
 import 'interceptors.dart';
@@ -49,10 +51,14 @@ class APICaller {
 
       return Right(BaseResponse.fromJson(jsonDecode(response.toString())));
     } on DioException catch (error) {
-      Log.error(error.message);
-      return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
-              .message ??
-          error.response.toString());
+      Logger().e(error.message);
+      if (error.response?.statusCode == 401 &&(SessionManagement.getUserToken() != null || SessionManagement.getUserToken()!.isNotEmpty)) {
+        return const Left("401");
+      } else {
+        return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
+                .message ??
+            error.response.toString());
+      }
     } on SocketException {
       Log.error("connection error");
       return const Left('connection error');
