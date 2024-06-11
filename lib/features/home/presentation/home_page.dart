@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white, fontSize: isTablet ? 32 : 16),textAlign: TextAlign.center,),
                 Gap(2.sh),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal:isTablet ? 8.sw :10.sw),
+                  padding:  EdgeInsets.symmetric(horizontal:isTablet ? 6.sw :10.sw),
                   child: Column(
                     children: [
                       SecondaryCustomButton(

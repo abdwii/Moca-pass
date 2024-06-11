@@ -8,16 +8,16 @@ import '../utility/strings.dart';
 void showErrorDialog(
     String message, BuildContext context, VoidCallback onPress) {
   showModalBottomSheet(
-    isDismissible: false,
+    isDismissible: true,
     backgroundColor: kSecondaryColor,
     context: context,
-    enableDrag: false,
+    enableDrag: true,
     constraints: const BoxConstraints(minWidth: double.infinity),
     builder: (BuildContext context) {
       return BottomSheet(
         constraints: const BoxConstraints(minWidth: double.infinity),
         backgroundColor: kSecondaryColor,
-        enableDrag: false,
+        enableDrag: true,
         dragHandleSize: const Size(100, 4),
         showDragHandle: true,
         dragHandleColor: primaryColor,
@@ -73,8 +73,8 @@ void showErrorDialog(
   );
 }
 
-void showAlertDialog(
-    String title, String message, BuildContext context, VoidCallback cancel, VoidCallback yes) {
+void showAlertDialog(String title, String message, BuildContext context,
+    VoidCallback cancel, VoidCallback yes) {
   showModalBottomSheet(
     isDismissible: false,
     backgroundColor: kErrorColor,
@@ -106,7 +106,7 @@ void showAlertDialog(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       title,
-                      style:  const TextStyle(
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
                         color: kSecondaryColor,
@@ -153,7 +153,7 @@ void showAlertDialog(
                           backgroundColor: Colors.white,
                           onPressed: cancel),
                     ),
-                    SizedBox(width:4.sw),
+                    SizedBox(width: 4.sw),
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: MainCustomButton(

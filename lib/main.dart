@@ -14,7 +14,8 @@ import 'core/local_data/session_management.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppConfig.environment = Environment.development;
-  Logger().i("\nBaseURl = ${AppConfig.baseUrl}, \n${AppConfig.environment}");
+  Logger().i(
+      "\nBaseURl = ${AppConfig.baseUrl},\nauthURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
   await SessionManagement.init();
   configLoading();
   Bloc.observer = MyBlocObserver();

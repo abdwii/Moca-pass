@@ -36,6 +36,7 @@ dependencies:
 #  device_preview: ^1.1.0
   flutter_native_splash: ^2.4.0
   ai_barcode_scanner: ^3.4.3
+  loader_overlay: ^4.0.0
 #  flutter_spinkit: ^5.2.0
 #  fluttertoast: ^8.2.4
 #  get_it: ^7.6.4

@@ -1,5 +1,5 @@
 import 'package:MocaPass/features/scan/scan_screen.dart';
-import 'package:MocaPass/features/scan_success/scan_screen.dart';
+import 'package:MocaPass/features/scan_success/scan_success_screen.dart';
 
 import '../../../features/access/access_type.dart';
 import '../../../features/auth/login/presentation/login_page.dart';

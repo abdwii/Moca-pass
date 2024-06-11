@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'login_body.dart';
 
 class LoginPage extends StatelessWidget {
@@ -6,8 +8,17 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: LoginBody(),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) async {
+        if (didPop) {
+          return;
+        }
+        SystemNavigator.pop();
+      },
+      child: Scaffold(
+        body: LoginBody(),
+      ),
     );
   }
 }

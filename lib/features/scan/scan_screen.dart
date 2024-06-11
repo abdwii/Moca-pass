@@ -31,10 +31,12 @@ class _ScanPageState extends State<ScanPage> {
                 : CameraFacing.back,
         torchEnabled: false,
         useNewCameraSelector: true);
-    controller.start(cameraFacingOverride:SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
-        0
-        ? CameraFacing.front
-        : CameraFacing.back);
+    controller.start(
+        cameraFacingOverride:
+            SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
+                    0
+                ? CameraFacing.front
+                : CameraFacing.back);
     super.initState();
   }
 
@@ -43,6 +45,8 @@ class _ScanPageState extends State<ScanPage> {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var isTablet = deviceType == DeviceScreenType.tablet ||
         deviceType == DeviceScreenType.desktop;
+    var deviceOrientation = (MediaQuery.of(context).orientation);
+
     return Stack(
       alignment: Alignment.topCenter,
       children: [
@@ -52,6 +56,7 @@ class _ScanPageState extends State<ScanPage> {
             color: Colors.transparent,
             height: 0,
           ),
+          overlayColor: kOverlayColor,
           borderRadius: 21,
           borderColor: primaryColor,
           borderWidth: 3.5.sh,
@@ -60,7 +65,7 @@ class _ScanPageState extends State<ScanPage> {
           onScan: (capture) {
             // handleBarcodeScanning(scan, capture);
             Logger().i(capture);
-            Timer(const Duration(milliseconds: 500), () {
+            Timer(const Duration(milliseconds: 250), () {
               Navigator.of(context).pushNamed(Routes.scanSuccessScreen);
               controller.stop();
             });
@@ -94,7 +99,7 @@ class _ScanPageState extends State<ScanPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.sh),
+              padding: EdgeInsets.only(top: deviceOrientation==Orientation.portrait?10.sh:2.5.sh),
               child: Text(
                 StringConst.scanInfoText,
                 style: scannerInfoTextStyle(isTablet),
@@ -106,9 +111,9 @@ class _ScanPageState extends State<ScanPage> {
       ],
     );
   }
+
   @override
   void dispose() {
-
     controller.stop();
     controller.dispose();
     super.dispose();
