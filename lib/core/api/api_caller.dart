@@ -7,10 +7,10 @@ import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
 import '../debugging/log.dart';
-import 'interceptors.dart';
-
 import 'base_response.dart';
 import 'constants/methods.dart';
+import 'constants/status_codes.dart';
+import 'interceptors.dart';
 
 class APICaller {
   String baseurl;
@@ -52,8 +52,11 @@ class APICaller {
       return Right(BaseResponse.fromJson(jsonDecode(response.toString())));
     } on DioException catch (error) {
       Logger().e(error.message);
-      if (error.response?.statusCode == 401 &&(SessionManagement.getUserToken() != null || SessionManagement.getUserToken()!.isNotEmpty)) {
-        return const Left("401");
+      if ((error.response?.statusCode == StatusCodes.forbidden ||
+              error.response?.statusCode == StatusCodes.unauthorized) &&
+          (SessionManagement.getUserToken() != null ||
+              SessionManagement.getUserToken()!.isNotEmpty)) {
+        return Left("${error.response?.statusCode}");
       } else {
         return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
                 .message ??

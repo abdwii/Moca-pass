@@ -2,21 +2,19 @@ import 'package:MocaPass/core/api/app_configs/app_config.dart';
 import 'package:MocaPass/features/auth/login/model/login_pojo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../../core/api/api_caller.dart';
 import '../../../../../core/api/constants/endpoints.dart';
 import '../../../../../core/api/constants/methods.dart';
 import '../../../../../core/local_data/session_management.dart';
-import '../../../../../core/presentation/widgets/loader_controller.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  String email;
-  String password;
+  String email = "";
+  String password = "";
 
-  LoginCubit(this.email, this.password) : super(LoginStateInitial());
+  LoginCubit() : super(LoginStateInitial());
 
   final APICaller _apiCaller = APICaller(AppConfig.authBaseUrl);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();

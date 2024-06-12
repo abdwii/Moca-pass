@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -32,11 +31,14 @@ class SessionManagement {
     box.put(IS_LOGIN_KEY, true);
   }
 
-  static void setCamFacing(int facing) async{
-   await box.put(cameraFacingKey, facing);
+  static void setCamFacing(int facing) async {
+    await box.put(cameraFacingKey, facing);
   }
 
+  static void setStringValue(String key, String value) async {
+    await box.put(key, value);
+  }
   static String getValue(String key) => box.get(key) ?? "";
 
-  static int getCamFacing(String key)  => box.get(key) ?? 0;
+  static int getCamFacing(String key) => box.get(key) ?? 0;
 }

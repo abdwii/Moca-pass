@@ -1,25 +1,23 @@
 import 'package:MocaPass/features/scan/cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:logger/logger.dart';
 
 import '../../core/observer.dart';
 import '../../core/presentation/app_widget.dart';
-import '../../core/utility/assets_data.dart';
-import '../../core/utility/colors_data.dart';
 import '../../features/auth/login/application/cubit/login_cubit.dart';
 import 'core/api/app_configs/app_config.dart';
 import 'core/local_data/session_management.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppConfig.environment = Environment.staging;
+  AppConfig.environment = Environment.development;
   Logger().i(
-      "\nBaseURl = ${AppConfig.baseUrl},\nauthURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
-  await SessionManagement.init();
-  configLoading();
-  Bloc.observer = MyBlocObserver();
+      "\n BaseURl = ${AppConfig.baseUrl},\n authURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
+  await SessionManagement.init();/*
+  SessionManagement.setStringValue(SessionManagement.TOKEN_KEY,
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYXRtYVNheWVkIiwianRpIjoiYzg2M2Q1M2MtNDU3My00ZDYxLThkZDktYTdkOTc0YWY1NmY4IiwiZW1haWwiOiJmc2F5ZWRAZG5hYXlhLmNvbSIsInVpZCI6IjQ0YjhkYjQwLTc0NjEtNDMwNy1iYzNjLTE4NTM3Njg4Y2Q0OCIsImlwIjoiMTAuMTAuMS4xOCIsInJvbGVzIjoiQWRtaW4iLCJleHAiOjE3MTgwOTQzNTcsImlzcyI6IkNvcmVJZGVudGl0eSIsImF1ZCI6IkNvcmVJZGVudGl0eVVzZXIifQ.G-Dz8E-4NtxtQploIn2bMgz_Y9v5sJ1dZiUvozkp174");
+*/  Bloc.observer = MyBlocObserver();
 
   // initLocator();
   // runApp(DevicePreview(
@@ -36,38 +34,9 @@ Future<void> main() async {
   //     }));
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(
-        create: (context) => LoginCubit("", ""),
-      ),
-      BlocProvider(create: (context) => ScanCubit())
+      BlocProvider(create: (context) => LoginCubit()),
+      BlocProvider(create: (context) => ScanCubit()),
     ],
     child: const AppWidget(),
   ));
-}
-
-void configLoading() {
-  EasyLoading.instance
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..indicatorWidget = const SizedBox(
-        width: 150,
-        height: 150,
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: CircularProgressIndicator(),
-        ))
-    ..infoWidget = SizedBox(
-        width: 150, height: 150, child: Image.asset(AssetsData.blueLogo))
-    ..indicatorSize = 60
-    ..indicatorColor = primaryColor
-    ..contentPadding = const EdgeInsets.symmetric(vertical: 12)
-    ..displayDuration = const Duration(milliseconds: 1400)
-    ..radius = 10.0
-    ..progressColor = primaryColor
-    ..backgroundColor = Colors.white
-    ..textColor = Colors.black
-    ..maskColor = primaryColor
-    ..maskType = EasyLoadingMaskType.clear
-    ..userInteractions = false
-    ..animationDuration = const Duration(milliseconds: 350)
-    ..dismissOnTap = false;
 }
