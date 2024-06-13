@@ -2,7 +2,9 @@ import 'package:MocaPass/core/local_data/session_management.dart';
 import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
 import 'package:MocaPass/core/presentation/widgets/secondary_custom_button.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
+import 'package:MocaPass/features/scan/cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg.dart';
@@ -80,6 +82,9 @@ class AccessTypePage extends StatelessWidget {
                                   color: kSecondaryColor,
                                   iconPath: AssetsData.scanImage,
                                   onPressed: () {
+                                    // access type 1 for scan in and 2 for scan out
+                                    BlocProvider.of<ScanCubit>(context).isScanIn=true;
+                                    SessionManagement.setAccessType(1);
                                     navToScanner(context);
                                   }),
                               Gap(2.sh),
@@ -88,11 +93,8 @@ class AccessTypePage extends StatelessWidget {
                                   color: Colors.white,
                                   iconPath: AssetsData.scanImage,
                                   onPressed: () {
-                                    /*showErrorDialog(
-                                        "Something Went Error!Something Went Error!Something Went Error!",
-                                        context, () {
-                                      Navigator.of(context).pop();
-                                    });*/
+                                    BlocProvider.of<ScanCubit>(context).isScanIn=false;
+                                    SessionManagement.setAccessType(2);
                                     navToScanner(context);
                                   }),
                             ],

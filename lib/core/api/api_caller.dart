@@ -58,9 +58,13 @@ class APICaller {
               SessionManagement.getUserToken()!.isNotEmpty)) {
         return Left("${error.response?.statusCode}");
       } else {
-        return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
-                .message ??
-            error.response.toString());
+        try {
+          return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
+                  .message ??
+              error.response.toString());
+        } on Exception catch (e) {
+          return const Left('Error!');
+        }
       }
     } on SocketException {
       Log.error("connection error");

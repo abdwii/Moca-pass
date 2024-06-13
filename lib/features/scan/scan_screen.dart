@@ -93,20 +93,22 @@ class _ScanPageState extends State<ScanPage> {
             listener: (context, state) {
               if (state is ScanLoading) {
                 showLoader(context);
+                controller.stop();
               }
               if (state is ScanLoaded) {
                 hideLoader(context);
                 Timer(const Duration(milliseconds: 250), () {
-                  Navigator.of(context).pushNamed(Routes.scanSuccessScreen);
+                  Navigator.of(context)
+                      .pushReplacementNamed(Routes.scanSuccessScreen);
                 });
               }
               if (state is ScanError) {
                 hideLoader(context);
+                controller.stop();
                 showErrorDialog(state.message ?? '', context, () {
                   Navigator.of(context).pop();
-                  controller.stop();
                   controller.start();
-                });
+                }, () {});
               }
             },
             child: AiBarcodeScanner(
@@ -126,7 +128,14 @@ class _ScanPageState extends State<ScanPage> {
                 // handleBarcodeScanning(scan, capture);
                 Logger().i(capture);
                 // controller.stop();
-                await BlocProvider.of<ScanCubit>(context).scanIn(capture);
+                bool? isScanIn = BlocProvider.of<ScanCubit>(context).isScanIn;
+                if (isScanIn == true) {
+                  await BlocProvider.of<ScanCubit>(context).scanIn(capture);
+                } else if (isScanIn == false) {
+                  await BlocProvider.of<ScanCubit>(context).scanOut(capture);
+                } else {
+                  Navigator.of(context).pop();
+                }
               },
             ),
           ),

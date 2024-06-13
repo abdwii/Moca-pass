@@ -8,6 +8,7 @@ class SessionManagement {
   static const String IS_LOGIN_KEY = "login_key";
   static const String TOKEN_KEY = "token_key";
   static const String cameraFacingKey = "cameraFacingKey";
+  static const int IS_SCANIN_KEY = 0;
 
   static late Box<dynamic> box;
 
@@ -38,7 +39,12 @@ class SessionManagement {
   static void setStringValue(String key, String value) async {
     await box.put(key, value);
   }
+
   static String getValue(String key) => box.get(key) ?? "";
 
   static int getCamFacing(String key) => box.get(key) ?? 0;
+  static int getAccessType() => box.get(IS_SCANIN_KEY, defaultValue: 0);
+
+  static void setAccessType(int value) async =>
+      await box.put(IS_SCANIN_KEY, value);
 }

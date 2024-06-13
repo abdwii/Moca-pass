@@ -5,8 +5,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../utility/strings.dart';
 
-void showErrorDialog(
-    String message, BuildContext context, VoidCallback onPress) {
+void showErrorDialog(String message, BuildContext context, VoidCallback onPress,
+    VoidCallback? onClosing) {
   showModalBottomSheet(
     isDismissible: true,
     backgroundColor: kSecondaryColor,
@@ -67,7 +67,9 @@ void showErrorDialog(
             ),
           );
         },
-        onClosing: () {},
+        onClosing: () {
+          if (onClosing != null) onClosing();
+        },
       );
     },
   );

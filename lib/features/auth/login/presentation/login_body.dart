@@ -86,7 +86,7 @@ class LoginBody extends StatelessWidget {
                     showErrorDialog(state.message, context, () {
                       BlocProvider.of<LoginCubit>(context).signIn(context);
                       Navigator.of(context).pop();
-                    });
+                    },null);
                   }
                 },
                 builder: (context, state) {
