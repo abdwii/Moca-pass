@@ -3,7 +3,6 @@ import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:MocaPass/features/splash/cubit/refresh_token_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import '../../core/debugging/log.dart';
 import '../../core/local_data/session_management.dart';
 import '../../core/presentation/routes/routes_manager.dart';
 import '../../core/utility/assets_data.dart';
@@ -16,7 +15,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(
         const Duration(
-          milliseconds: 20,
+          milliseconds: 4000,
         ), () async {
       if (SessionManagement.getUserToken() != null &&
           SessionManagement.getUserToken()!.isNotEmpty) {
@@ -43,7 +42,7 @@ class SplashPage extends StatelessWidget {
                 end: Alignment(-0.49, -0.87),
                 colors: [
                   primaryColor,
-                  Color(0xFFFD00E2),
+                  gColor,
                 ],
               ),
             ),

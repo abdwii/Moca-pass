@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //
 const primaryColor = MOCA_PURPLEM300_9A28CD;
+const gColor = Color(0xFFFD00E2);
 const kSecondaryColor = YELLOWY300_FFE42C;
 const kGreyFontColor = Color(0xFF464646);
 const kSecondaryFontColor = Color(0xFF727272);

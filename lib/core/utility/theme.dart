@@ -32,11 +32,11 @@ final themeData = ThemeData(
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-        elevation: MaterialStatePropertyAll(0),
-        backgroundColor: MaterialStatePropertyAll(Colors.white),
-        foregroundColor: MaterialStatePropertyAll(Colors.black),
-        padding: MaterialStatePropertyAll(EdgeInsets.zero),
-        shape: MaterialStatePropertyAll(StadiumBorder()),
+        elevation: WidgetStatePropertyAll(0),
+        backgroundColor: WidgetStatePropertyAll(Colors.white),
+        foregroundColor: WidgetStatePropertyAll(Colors.black),
+        padding: WidgetStatePropertyAll(EdgeInsets.zero),
+        shape: WidgetStatePropertyAll(StadiumBorder()),
       ),
     ),
     fontFamily: StringConst.mainFont);

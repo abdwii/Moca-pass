@@ -52,20 +52,9 @@ class APICaller {
       return Right(BaseResponse.fromJson(jsonDecode(response.toString())));
     } on DioException catch (error) {
       Logger().e(error.message);
-      if ((error.response?.statusCode == StatusCodes.forbidden ||
-              error.response?.statusCode == StatusCodes.unauthorized) &&
-          (SessionManagement.getUserToken() != null ||
-              SessionManagement.getUserToken()!.isNotEmpty)) {
-        return Left("${error.response?.statusCode}");
-      } else {
-        try {
-          return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
-                  .message ??
-              error.response.toString());
-        } on Exception catch (e) {
-          return const Left('Error!');
-        }
-      }
+      return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
+          .message ??
+          error.response.toString());
     } on SocketException {
       Log.error("connection error");
       return const Left('connection error');
