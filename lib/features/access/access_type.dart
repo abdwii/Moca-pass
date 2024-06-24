@@ -16,28 +16,16 @@ import '../../../core/utility/strings.dart';
 import '../../../core/utility/theme.dart';
 import '../../core/presentation/app_bottom_sheets.dart';
 
-class AccessTypePage extends StatefulWidget {
+class AccessTypePage extends StatelessWidget {
   const AccessTypePage({
     super.key,
   });
 
   @override
-  State<AccessTypePage> createState() => _AccessTypePageState();
-}
-
-class _AccessTypePageState extends State<AccessTypePage> {
-  @override
-  Future<void> initState() async {
-    await BlocProvider.of<RefreshTokenCubit>(context).refreshToken();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var deviceOrientation = (MediaQuery.of(context).orientation);
-    var isTablet = deviceType == DeviceScreenType.tablet ||
-        deviceType == DeviceScreenType.desktop;
+    var isTablet = deviceType == DeviceScreenType.tablet ;
     return PopScope(
       canPop: false,
       onPopInvoked: (_) {
@@ -47,6 +35,7 @@ class _AccessTypePageState extends State<AccessTypePage> {
         body: AppBackground(
           child: SafeArea(
             child: SingleChildScrollView(
+              scrollDirection:Axis.vertical ,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
                 children: [
@@ -93,7 +82,8 @@ class _AccessTypePageState extends State<AccessTypePage> {
                                   text: StringConst.scanIn,
                                   color: kSecondaryColor,
                                   iconPath: AssetsData.scanImage,
-                                  onPressed: () {
+                                  onPressed: ()  {
+                                     BlocProvider.of<RefreshTokenCubit>(context).refreshToken();
                                     // access type 1 for scan in and 2 for scan out
                                     BlocProvider.of<ScanCubit>(context)
                                         .isScanIn = true;
@@ -105,7 +95,9 @@ class _AccessTypePageState extends State<AccessTypePage> {
                                   text: StringConst.scanOut,
                                   color: Colors.white,
                                   iconPath: AssetsData.scanImage,
-                                  onPressed: () {
+                                  onPressed: ()  {
+                                     BlocProvider.of<RefreshTokenCubit>(context).refreshToken();
+
                                     BlocProvider.of<ScanCubit>(context)
                                         .isScanIn = false;
                                     SessionManagement.setAccessType(2);

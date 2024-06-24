@@ -55,7 +55,7 @@ EdgeInsetsGeometry getLoginHPadding(
   if (isTablet && Orientation.portrait == deviceOrientation) {
     return EdgeInsets.symmetric(horizontal: 28.sw);
   } else if (isTablet && Orientation.landscape == deviceOrientation) {
-    return EdgeInsets.symmetric(horizontal: 50.sw);
+    return EdgeInsets.symmetric(horizontal: 45.sw);
   } else {
     return EdgeInsets.symmetric(horizontal: 6.sw);
   }

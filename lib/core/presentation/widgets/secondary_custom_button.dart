@@ -43,7 +43,7 @@ class SecondaryCustomButton extends StatelessWidget {
       },
       color: color ?? kSecondaryColor,
       textColor: textColor ?? primaryColor,
-      padding: EdgeInsets.symmetric(horizontal: 8.sw, vertical: 2.5.sw),
+      padding: EdgeInsets.symmetric(horizontal: 4.sw, vertical: 2.5.sw),
       child: Row(
         children: [
           const Spacer(

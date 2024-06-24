@@ -52,9 +52,7 @@ class APICaller {
       return Right(BaseResponse.fromJson(jsonDecode(response.toString())));
     } on DioException catch (error) {
       Logger().e(error.message);
-      return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
-          .message ??
-          error.response.toString());
+      return Left(BaseResponse.fromJson(jsonDecode(error.response.toString())).message ?? error.response.toString());
     } on SocketException {
       Log.error("connection error");
       return const Left('connection error');

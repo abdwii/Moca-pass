@@ -1,4 +1,4 @@
-package com.technopolitan.mocaspaces.pass.dev
+package com.technopolitan.mocaspaces.pass
 
 import io.flutter.embedding.android.FlutterActivity
 

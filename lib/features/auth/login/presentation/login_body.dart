@@ -105,7 +105,7 @@ class LoginBody extends StatelessWidget {
                           AssetsData.logo,
                           width: isTablet ? 35.sw : 50.sw,
                         ),
-                        Gap(isTablet ? 10.sw : 24.sw),
+                        Gap(isTablet ? 5.sh : 24.sw),
                         Text(StringConst.login,
                             style: Theme.of(context)
                                 .textTheme
