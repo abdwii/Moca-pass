@@ -3,6 +3,7 @@ import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
 import 'package:MocaPass/core/presentation/widgets/secondary_custom_button.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
 import 'package:MocaPass/features/scan/cubit/scan_cubit.dart';
+import 'package:MocaPass/features/splash/cubit/refresh_token_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -15,10 +16,21 @@ import '../../../core/utility/strings.dart';
 import '../../../core/utility/theme.dart';
 import '../../core/presentation/app_bottom_sheets.dart';
 
-class AccessTypePage extends StatelessWidget {
+class AccessTypePage extends StatefulWidget {
   const AccessTypePage({
     super.key,
   });
+
+  @override
+  State<AccessTypePage> createState() => _AccessTypePageState();
+}
+
+class _AccessTypePageState extends State<AccessTypePage> {
+  @override
+  Future<void> initState() async {
+    await BlocProvider.of<RefreshTokenCubit>(context).refreshToken();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +95,8 @@ class AccessTypePage extends StatelessWidget {
                                   iconPath: AssetsData.scanImage,
                                   onPressed: () {
                                     // access type 1 for scan in and 2 for scan out
-                                    BlocProvider.of<ScanCubit>(context).isScanIn=true;
+                                    BlocProvider.of<ScanCubit>(context)
+                                        .isScanIn = true;
                                     SessionManagement.setAccessType(1);
                                     navToScanner(context);
                                   }),
@@ -93,7 +106,8 @@ class AccessTypePage extends StatelessWidget {
                                   color: Colors.white,
                                   iconPath: AssetsData.scanImage,
                                   onPressed: () {
-                                    BlocProvider.of<ScanCubit>(context).isScanIn=false;
+                                    BlocProvider.of<ScanCubit>(context)
+                                        .isScanIn = false;
                                     SessionManagement.setAccessType(2);
                                     navToScanner(context);
                                   }),

@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:MocaPass/core/utility/colors_data.dart';
-import 'package:MocaPass/features/splash/cubit/refresh_token_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../core/local_data/session_management.dart';
 import '../../core/presentation/routes/routes_manager.dart';
@@ -16,10 +14,11 @@ class SplashPage extends StatelessWidget {
     Timer(
         const Duration(
           milliseconds: 4000,
-        ), () async {
+        ), () {
       if (SessionManagement.getUserToken() != null &&
           SessionManagement.getUserToken()!.isNotEmpty) {
-        await BlocProvider.of<RefreshTokenCubit>(context).refreshToken();
+        // await BlocProvider.of<RefreshTokenCubit>(context).refreshToken();
+        Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
       } else {
         Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
       }
@@ -27,41 +26,34 @@ class SplashPage extends StatelessWidget {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
 
     return Scaffold(
-      body: BlocListener<RefreshTokenCubit, RefreshTokenState>(
-        listener: (context, state) {
-          if (state is RefreshTokenLoaded || state is RefreshTokenError) {
-            Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
-          }
-        },
-        child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(0.49, 0.87),
-                end: Alignment(-0.49, -0.87),
-                colors: [
-                  primaryColor,
-                  gColor,
-                ],
-              ),
+      body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment(0.49, 0.87),
+              end: Alignment(-0.49, -0.87),
+              colors: [
+                primaryColor,
+                gColor,
+              ],
             ),
-            child: deviceType == DeviceScreenType.tablet ||
-                    deviceType == DeviceScreenType.desktop
-                ? Image.asset(
+          ),
+          child: deviceType == DeviceScreenType.tablet ||
+                  deviceType == DeviceScreenType.desktop
+              ? Image.asset(
+                  AssetsData.splash,
+                  fit: BoxFit.fitWidth,
+                  height: double.infinity,
+                )
+              : Padding(
+                  padding: EdgeInsets.symmetric(vertical: 35.sw),
+                  child: Image.asset(
                     AssetsData.splash,
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.cover,
                     height: double.infinity,
-                  )
-                : Padding(
-                    padding: EdgeInsets.symmetric(vertical: 35.sw),
-                    child: Image.asset(
-                      AssetsData.splash,
-                      fit: BoxFit.cover,
-                      height: double.infinity,
-                    ),
-                  )),
-      ),
+                  ),
+                )),
     );
   }
 }

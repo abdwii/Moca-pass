@@ -20,7 +20,7 @@ final themeData = ThemeData(
     )),
     textButtonTheme: const TextButtonThemeData(
       style: ButtonStyle(
-        textStyle: MaterialStatePropertyAll(
+        textStyle: WidgetStatePropertyAll(
           TextStyle(
             color: primaryColor,
             fontSize: 48,

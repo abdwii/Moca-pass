@@ -12,7 +12,7 @@ import 'core/local_data/session_management.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppConfig.environment = Environment.development;
+  AppConfig.environment = Environment.staging;
   Logger().i(
       "\n BaseURl = ${AppConfig.baseUrl},\n authURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
   await SessionManagement.init();
