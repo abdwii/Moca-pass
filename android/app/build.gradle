@@ -21,6 +21,8 @@ def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
+def parentDirPath = rootProject.projectDir
+println "parent project path: $parentDirPath"  + "\\app\\technoPolitanKey.jks"
 
 android {
     namespace "com.technopolitan.mocaspaces.pass"
@@ -31,14 +33,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-//    signingConfigs {
-//        debug {
-//            storeFile file("/debug.keystore")
-//            storePassword "android"
-//            keyAlias "androiddebugkey"
-//            keyPassword "android"
-//        }
-//    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -58,11 +52,20 @@ android {
         versionName flutterVersionName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `` works.
-            signingConfig signingConfigs.debug
+            keyAlias 'Copolitan'
+            keyPassword 'Techn0@P0l1t@n'
+            storeFile file("$parentDirPath" + "\\app\\technoPolitanKey.jks")
+            storePassword 'Techn0@P0l1t@n'
+        }
+
+        buildTypes {
+            release {
+                // TODO: Add your own signing config for the release build.
+                // Signing with the debug keys for now, so `` works.
+                signingConfig signingConfigs.debug
+            }
         }
     }
 }

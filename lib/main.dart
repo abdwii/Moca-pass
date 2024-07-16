@@ -13,8 +13,12 @@ import 'core/local_data/session_management.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppConfig.environment = Environment.production;
-  Logger().i(
-      "\n BaseURl = ${AppConfig.baseUrl},\n authURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
+  if(AppConfig.environment != Environment.production) {
+    {
+      Logger().i(
+          "\n BaseURl = ${AppConfig.baseUrl},\n authURl = ${AppConfig.authBaseUrl}, \n${AppConfig.environment}");
+    }
+  }
   await SessionManagement.init();
   Bloc.observer = MyBlocObserver();
   runApp(MultiBlocProvider(
