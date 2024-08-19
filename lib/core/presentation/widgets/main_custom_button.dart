@@ -1,24 +1,28 @@
 import '../../utility/colors_data.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MainCustomButton extends StatelessWidget {
   final String buttonName;
   final void Function()? onPressed;
   final Color? backgroundColor;
+  final EdgeInsetsGeometry? padding;
+  final bool isEnabled;
 
-  const MainCustomButton(
-      {super.key,
-      required this.buttonName,
-      required this.onPressed,
-      this.backgroundColor});
+  const MainCustomButton({
+    super.key,
+    required this.buttonName,
+    required this.isEnabled,
+    required this.onPressed,
+    this.backgroundColor,
+    this.padding,
+  });
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
-    var isTablet = deviceType == DeviceScreenType.tablet ||
-        deviceType == DeviceScreenType.desktop;
+    // var deviceType = getDeviceType(MediaQuery.of(context).size);
+    // var isTablet = deviceType == DeviceScreenType.tablet ||
+    //     deviceType == DeviceScreenType.desktop;
     return MaterialButton(
       elevation: 0,
       hoverElevation: 0,
@@ -27,19 +31,17 @@ class MainCustomButton extends StatelessWidget {
       disabledElevation: 0,
       disabledColor: kHintColor,
       shape: const StadiumBorder(),
-      onPressed: onPressed,
+      onPressed: isEnabled ? onPressed : null,
       color: backgroundColor ?? Colors.white,
       textColor: primaryColor,
-      padding: EdgeInsets.symmetric(
-        horizontal: isTablet ? 8.sw : 15.sw,
-        vertical: isTablet ? 1.sh : 2.sh,
-      ),
+      padding: padding,
       child: Text(
         buttonName,
-        style: Theme.of(context)
-            .textTheme
-            .labelLarge
-            ?.copyWith(color: primaryColor, fontSize:isTablet?2.sw :4.sw),
+        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+            color: backgroundColor == primaryColor
+                ? kSecondaryColor
+                : primaryColor,
+            fontSize: 18),
       ),
     );
   }

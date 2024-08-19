@@ -1,11 +1,12 @@
+import '../../../../../core/utility/assets_data.dart';
+import '../../../../../core/utility/colors_data.dart';
+import '../../../../../core/utility/strings.dart';
+import '../../../../../core/utility/theme.dart';
+import '../../application/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg_flutter.dart';
-
-import '../../../../../core/utility/assets_data.dart';
-import '../../../../../core/utility/theme.dart';
-import '../../application/cubit/login_cubit.dart';
 
 class EmailField extends StatelessWidget {
   VoidCallback onChange;
@@ -20,16 +21,7 @@ class EmailField extends StatelessWidget {
         style: textInputsLabelStyle(),
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         validator: (value) {
-          final RegExp emailRegex = RegExp(
-            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-          );
-
-          if (value != null &&
-              value.isNotEmpty &&
-              !emailRegex.hasMatch(value)) {
-            return '*Invalid email';
-          }
-          return null;
+          return validateWithRegex(value);
         },
         onChanged: (value) {
           context.read<LoginCubit>().email = value;
@@ -37,14 +29,14 @@ class EmailField extends StatelessWidget {
         },
         cursorColor: Colors.white,
         onSaved: (newValue) {
-          if (newValue != null && newValue.isNotEmpty) {}
           context.read<LoginCubit>().email = newValue!;
         },
         key: const ValueKey('SignInEmail'),
-        textAlign: TextAlign.left,
-        textAlignVertical: TextAlignVertical.bottom,
+        textAlign: TextAlign.start,
         decoration: InputDecoration(
           fillColor: Colors.transparent,
+          errorStyle: const TextStyle(color: kErrorColor,fontFamily:StringConst.mainFont,fontWeight:FontWeight.w400 ,fontSize:10 ),
+          labelStyle:textInputsLabelStyle(),
           prefixIcon: Padding(
             padding: EdgeInsets.symmetric(vertical: 3.sw, horizontal: 3.sw),
             child: SvgPicture.asset(
@@ -55,7 +47,7 @@ class EmailField extends StatelessWidget {
           ),
           prefixIconConstraints:
               const BoxConstraints(minWidth: 0, minHeight: 0),
-          suffixIcon: isValidEmail(context)
+          suffixIcon: isValidEmail(BlocProvider.of<LoginCubit>(context).email)
               ? Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 3.sw, horizontal: 3.sw),
@@ -66,7 +58,7 @@ class EmailField extends StatelessWidget {
                 )
               : null,
           suffixIconColor:
-              Colors.white.withOpacity(isValidEmail(context) ? 1 : 0.3),
+              Colors.white.withOpacity(isValidEmail(BlocProvider.of<LoginCubit>(context).email) ? 1 : 0.3),
           constraints: const BoxConstraints(
               maxWidth: double.infinity, minWidth: double.infinity),
           contentPadding: EdgeInsets.all(
@@ -74,14 +66,14 @@ class EmailField extends StatelessWidget {
           ),
           border: textFormFieldBorderStyle,
           enabledBorder: textFormFieldBorderStyle,
-          errorBorder: textFormFieldBorderStyle,
+          errorBorder: textFormFieldErrorBorderStyle,
           focusedBorder: textFormFieldBorderStyle,
           disabledBorder: textFormFieldBorderStyle,
+          focusedErrorBorder: textFormFieldErrorBorderStyle,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           label: const Text(
-            'Email',
+            StringConst.email,
           ),
-          labelStyle: textInputsLabelStyle(),
           filled: false,
         ),
         textInputAction: TextInputAction.next,
@@ -92,9 +84,15 @@ class EmailField extends StatelessWidget {
     );
   }
 
-  bool isValidEmail(BuildContext context) {
+  String? validateWithRegex(String? value) {
+    if (!isValidEmail(value!)) {
+      return '*Invalid email';
+    }
+    return null;
+  }
+
+  bool isValidEmail(String value) {
     try {
-      var value = BlocProvider.of<LoginCubit>(context).email;
       final RegExp emailRegex = RegExp(
         r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
       );

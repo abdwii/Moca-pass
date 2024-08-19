@@ -1,9 +1,13 @@
+import 'package:MocaPass/features/scan/scan_screen.dart';
+import 'package:MocaPass/features/scan_success/scan_success_screen.dart';
+
+import '../../../features/access/access_type.dart';
 import '../../../features/auth/login/presentation/login_page.dart';
 import '../../../features/splash/splash_page.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../../features/main/main_screen.dart';
+import '../../../features/home/main_screen.dart';
 import '../onboarding_page.dart';
 
 class Routes {
@@ -11,6 +15,9 @@ class Routes {
   static const String loginRoute = "/login";
   static const String onBoardingRoute = "/onBoarding";
   static const String mainScreen = "/mainScreen";
+  static const String accessScreen = "/accessScreen";
+  static const String scanScreen = "/scanScreen";
+  static const String scanSuccessScreen = "/scanSuccessScreen";
 }
 
 class RouteGenerator {
@@ -24,6 +31,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case Routes.mainScreen:
         return MaterialPageRoute(builder: (_) => const MainScreen());
+      case Routes.accessScreen:
+        return MaterialPageRoute(builder: (_) => const AccessTypePage());
+      case Routes.scanScreen:
+        return MaterialPageRoute(builder: (_) => const ScanPage());
+      case Routes.scanSuccessScreen:
+        return MaterialPageRoute(builder: (_) => const ScanSuccessPage());
       default:
         return unDefinedRoute();
     }

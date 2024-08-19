@@ -1,3 +1,5 @@
+import 'package:MocaPass/core/utility/colors_data.dart';
+
 import '../../../../../core/utility/assets_data.dart';
 import '../../../../../core/utility/strings.dart';
 import '../../../../../core/utility/theme.dart';
@@ -58,7 +60,9 @@ class _PasswordFieldState extends State<PasswordField> {
         key: const ValueKey('Password'),
         textAlign: TextAlign.left,
         textAlignVertical: TextAlignVertical.center,
+        onChanged: (v){context.read<LoginCubit>().formKey.currentState!.validate();},
         decoration: InputDecoration(
+          errorStyle: const TextStyle(color: kErrorColor),
             suffixIconColor: Colors.white,
             prefixIcon: Padding(
               padding: EdgeInsets.all(3.sw),
@@ -87,12 +91,13 @@ class _PasswordFieldState extends State<PasswordField> {
             ),
             border: textFormFieldBorderStyle,
             enabledBorder: textFormFieldBorderStyle,
-            errorBorder: textFormFieldBorderStyle,
+            errorBorder: textFormFieldErrorBorderStyle,
             focusedBorder: textFormFieldBorderStyle,
             disabledBorder: textFormFieldBorderStyle,
+            focusedErrorBorder: textFormFieldErrorBorderStyle,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             label: const Text(
-              'Password',
+              StringConst.password,
             ),
             labelStyle: textInputsLabelStyle(),
             filled: true,

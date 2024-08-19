@@ -1,14 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:MocaPass/core/local_data/session_management.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 
 import '../debugging/log.dart';
-import 'interceptors.dart';
-
 import 'base_response.dart';
 import 'constants/methods.dart';
+import 'constants/status_codes.dart';
+import 'interceptors.dart';
 
 class APICaller {
   String baseurl;
@@ -49,10 +51,8 @@ class APICaller {
 
       return Right(BaseResponse.fromJson(jsonDecode(response.toString())));
     } on DioException catch (error) {
-      Log.error(error.message);
-      return Left(BaseResponse.fromJson(jsonDecode(error.response.toString()))
-              .message ??
-          error.response.toString());
+      Logger().e(error.message);
+      return Left(BaseResponse.fromJson(jsonDecode(error.response.toString())).message ?? error.response.toString());
     } on SocketException {
       Log.error("connection error");
       return const Left('connection error');

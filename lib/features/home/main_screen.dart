@@ -1,4 +1,4 @@
-import '../../features/home/presentation/home_page.dart';
+import 'presentation/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
