@@ -112,31 +112,33 @@ class _ScanPageState extends State<ScanPage> {
               }
             },
             child: AiBarcodeScanner(
-              canPop: false,
-              bottomBar: Container(
-                color: Colors.transparent,
-                height: 0,
-              ),
+              // canPop: false,
+              // bottomBar: Container(
+              //   color: Colors.transparent,
+              //   height: 0,
+              // ),
               overlayColor: kOverlayColor,
               borderRadius: 21,
               borderColor: primaryColor,
               borderWidth: 3.5.sh,
               controller: controller,
-              onDetect: (capture) {},
-              showSuccess: false,
-              onScan: (capture) async {
+              onDetect: (capture) async{
                 // handleBarcodeScanning(scan, capture);
-                Logger().i(capture);
-                // controller.stop();
-                bool? isScanIn = BlocProvider.of<ScanCubit>(context).isScanIn;
-                if (isScanIn == true) {
-                  await BlocProvider.of<ScanCubit>(context).scanIn(capture);
-                } else if (isScanIn == false) {
-                  await BlocProvider.of<ScanCubit>(context).scanOut(capture);
-                } else {
-                  Navigator.of(context).pop();
-                }
               },
+              showSuccess: false,
+              // onScan: (capture) async {
+              //   // handleBarcodeScanning(scan, capture);
+              //   Logger().i(capture);
+              //   // controller.stop();
+              //   bool? isScanIn = BlocProvider.of<ScanCubit>(context).isScanIn;
+              //   if (isScanIn == true) {
+              //     await BlocProvider.of<ScanCubit>(context).scanIn(capture);
+              //   } else if (isScanIn == false) {
+              //     await BlocProvider.of<ScanCubit>(context).scanOut(capture);
+              //   } else {
+              //     Navigator.of(context).pop();
+              //   }
+              // },
             ),
           ),
           Column(
