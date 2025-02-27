@@ -8,7 +8,7 @@ const kGreyFontColor = Color(0xFF464646);
 const kSecondaryFontColor = Color(0xFF727272);
 const kHintColor = Color(0xFFBDBDBD);
 const kErrorColor = NOTIFY_REDN300_F54E60;
-const kOverlayColor = Color(0xccc5c5c5);
+const kOverlayColor = Color(0xcc000000);
 
 const kProfilePicBackgroundColor = Color(0xFFEDEDED);
 
