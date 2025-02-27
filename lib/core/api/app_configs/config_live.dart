@@ -1,4 +1,4 @@
 class LiveConfig{
-  static const String baseUrl = 'https://moca-workspace-live.azurewebsites.net/api/v1/';
+  static const String baseUrl = 'https://moca-api-live-259400140268.us-central1.run.app/api/v1/';
   static const String authBaseUrl = 'https://api.copolitan.com/api/';
 }
