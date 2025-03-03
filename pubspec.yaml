@@ -60,6 +60,7 @@ flutter_app_name:
   name: "Moca Pass"
 
 dev_dependencies:
+#  very_good_analysis: ^6.0.0
   build_runner: ^2.4.9
   flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^3.0.1
