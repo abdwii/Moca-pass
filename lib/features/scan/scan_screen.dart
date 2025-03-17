@@ -1,12 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:MocaPass/core/local_data/session_management.dart';
-import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
-import 'package:MocaPass/core/utility/strings.dart';
-import 'package:MocaPass/core/utility/theme.dart';
-import 'package:MocaPass/features/scan/cubit/scan_cubit.dart';
+import 'package:MocaPass/features/scan/CameraApp.dart';
 import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +12,12 @@ import 'package:logger/logger.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:svg_flutter/svg.dart';
 
+import '../../core/local_data/session_management.dart';
 import '../../core/presentation/app_bottom_sheets.dart';
+import '../../core/presentation/routes/routes_manager.dart';
 import '../../core/presentation/widgets/loader_controller.dart';
 import '../../core/utility/assets_data.dart';
+import 'cubit/scan_cubit.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -41,12 +40,6 @@ class _ScanPageState extends State<ScanPage> {
       torchEnabled: false,
       useNewCameraSelector: false,
     );
-    /*    controller.start(
-        cameraFacingOverride:
-            SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
-                    0
-                ? CameraFacing.front
-                : CameraFacing.back);*/
     super.initState();
   }
 
@@ -65,7 +58,7 @@ class _ScanPageState extends State<ScanPage> {
           filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
           child: Center(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 const CircularProgressIndicator(
                   strokeWidth: 3,
@@ -84,7 +77,7 @@ class _ScanPageState extends State<ScanPage> {
         );
       },
       child: Stack(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         children: [
           BlocListener<ScanCubit, ScanState>(
             listener: (context, state) {
@@ -140,22 +133,7 @@ class _ScanPageState extends State<ScanPage> {
               showSuccess: false,
             ),
           ),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: deviceOrientation == Orientation.portrait
-                      ? 10.sh
-                      : 2.5.sh,
-                ),
-                child: Text(
-                  StringConst.scanInfoText,
-                  style: scannerInfoTextStyle(isTablet),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
+          // CameraApp(),
         ],
       ),
     );

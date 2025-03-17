@@ -1,5 +1,6 @@
 import 'package:MocaPass/features/scan/cubit/scan_cubit.dart';
 import 'package:MocaPass/features/splash/cubit/refresh_token_cubit.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
@@ -12,6 +13,9 @@ import 'core/local_data/session_management.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  final firstCamera = cameras.first;
+  print(firstCamera);
   AppConfig.environment = Environment.production;
   if(AppConfig.environment != Environment.production) {
     {
