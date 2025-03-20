@@ -32,7 +32,7 @@ class SessionManagement {
     box.put(IS_LOGIN_KEY, true);
   }
 
-  static void setCamFacing(int facing) async {
+  static void setCamFacing(bool facing) async {
     await box.put(cameraFacingKey, facing);
   }
 
@@ -42,7 +42,7 @@ class SessionManagement {
 
   static String getValue(String key) => box.get(key) ?? "";
 
-  static int getCamFacing(String key) => box.get(key) ?? 0;
+  static bool getCamFacing() => box.get(SessionManagement.cameraFacingKey) ?? true;
   static int getAccessType() => box.get(IS_SCANIN_KEY, defaultValue: 0);
 
   static void setAccessType(int value) async =>

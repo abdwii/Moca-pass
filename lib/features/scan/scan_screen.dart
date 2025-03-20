@@ -2,8 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:MocaPass/core/utility/colors_data.dart';
-import 'package:MocaPass/features/scan/CameraApp.dart';
-import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
+import 'package:MocaPass/features/scan/qr_code_scanner_basic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -27,52 +26,35 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
-  late MobileScannerController controller;
 
   @override
   void initState() {
-    controller = MobileScannerController(
-      detectionSpeed: DetectionSpeed.noDuplicates,
-      facing:
-          SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) == 0
-              ? CameraFacing.front
-              : CameraFacing.back,
-      torchEnabled: false,
-      useNewCameraSelector: false,
-    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
-    var isTablet = deviceType == DeviceScreenType.tablet ||
-        deviceType == DeviceScreenType.desktop;
-    var deviceOrientation = (MediaQuery.of(context).orientation);
-
     return LoaderOverlay(
       useDefaultLoading: false,
       overlayColor: Colors.transparent,
       overlayWidgetBuilder: (_) {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const CircularProgressIndicator(
-                  strokeWidth: 3,
-                  color: kSecondaryColor,
-                ),
-                Gap(2.sh),
-                SvgPicture.asset(
-                  AssetsData.m,
-                  fit: BoxFit.fitWidth,
-                  width: 20.sw,
-                  color: kSecondaryColor,
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const CircularProgressIndicator(
+                strokeWidth: 3,
+                color: kSecondaryColor,
+              ),
+              Gap(2.sh),
+              SvgPicture.asset(
+                AssetsData.m,
+                fit: BoxFit.fitWidth,
+                width: 20.sw,
+                color: kSecondaryColor,
+              ),
+            ],
           ),
         );
       },
@@ -83,7 +65,7 @@ class _ScanPageState extends State<ScanPage> {
             listener: (context, state) {
               if (state is ScanLoading) {
                 showLoader(context);
-                controller.stop();
+                // controller.stop();
               }
               if (state is ScanLoaded) {
                 hideLoader(context);
@@ -95,54 +77,35 @@ class _ScanPageState extends State<ScanPage> {
               }
               if (state is ScanError) {
                 hideLoader(context);
-                controller.stop();
+                // controller.stop();
                 showErrorDialog(state.message ?? '', context, () {
                   Navigator.of(context).pop();
-                  controller.start();
+                  // controller.start();
                 }, () {});
               }
             },
-            child: AiBarcodeScanner(
-              hideGalleryButton: true,
-              hideSheetDragHandler: true,
-              hideSheetTitle: true,
-              overlayColor: kOverlayColor,
-              borderRadius: 21,
-              borderColor: primaryColor,
-              borderWidth: 3.sh,
-              controller: controller,
-              onDetect: (capture) async {
-                Logger().i(capture);
+            child: QRCodeScannerBasic(
+              isBackCamera: SessionManagement.getCamFacing(),
+              onScanned: (data) async {
+                Logger().i(data);
                 bool? isScanIn = BlocProvider.of<ScanCubit>(context).isScanIn;
-                if (isScanIn == true &&
-                    capture.barcodes.isNotEmpty &&
-                    capture.barcodes[0].rawValue != null) {
+                if (isScanIn == true && data.isNotEmpty) {
                   await BlocProvider.of<ScanCubit>(
                     context,
-                  ).scanIn(capture.barcodes[0].rawValue!);
-                } else if (isScanIn == false &&
-                    capture.barcodes.isNotEmpty &&
-                    capture.barcodes[0].rawValue != null) {
+                  ).scanIn(data);
+                } else if (isScanIn == false && data.isNotEmpty) {
                   await BlocProvider.of<ScanCubit>(
                     context,
-                  ).scanOut(capture.barcodes[0].rawValue!);
+                  ).scanOut(data);
                 } else {
                   Navigator.of(context).pop();
                 }
               },
-              showSuccess: false,
             ),
           ),
           // CameraApp(),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    controller.stop();
-    controller.dispose();
-    super.dispose();
   }
 }

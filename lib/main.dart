@@ -13,9 +13,6 @@ import 'core/local_data/session_management.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final cameras = await availableCameras();
-  final firstCamera = cameras.first;
-  print(firstCamera);
   AppConfig.environment = Environment.production;
   if(AppConfig.environment != Environment.production) {
     {
