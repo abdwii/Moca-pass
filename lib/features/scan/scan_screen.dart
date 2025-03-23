@@ -84,8 +84,8 @@ class _ScanPageState extends State<ScanPage> {
                 }, () {});
               }
             },
-            child: QRCodeScannerBasic(
-              isBackCamera: SessionManagement.getCamFacing(),
+            child: QRCodeScanner(
+              useBackCamera: SessionManagement.getCamFacing(),
               onScanned: (data) async {
                 Logger().i(data);
                 bool? isScanIn = BlocProvider.of<ScanCubit>(context).isScanIn;
