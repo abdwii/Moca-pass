@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -104,6 +106,14 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
       if (_isProcessing) return;
       _isProcessing = true;
 
+      // Log or check image data validity here
+      if (image.planes.isEmpty) {
+        print("Camera image has no planes.");
+        return;
+      }
+      await _cameraController?.setFocusMode(FocusMode.auto);
+
+
       final barcode = await _detectQRCode(image);
       if (barcode != null) {
         widget.onScanned(barcode);
@@ -131,6 +141,11 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
 
   InputImage? _convertCameraImage(CameraImage image) {
     try {
+      if (image.planes.isEmpty) {
+        print("Camera image has no planes.");
+        return null;
+      }
+
       final WriteBuffer writeBuffer = WriteBuffer();
       for (final Plane plane in image.planes) {
         writeBuffer.putUint8List(plane.bytes);
@@ -140,7 +155,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
       final inputImageData = InputImageMetadata(
         size: Size(image.width.toDouble(), image.height.toDouble()),
         rotation: InputImageRotation.rotation0deg,
-        format: InputImageFormat.nv21,
+        format: Platform.isIOS? InputImageFormat.bgra8888 : InputImageFormat.nv21,
         bytesPerRow: image.planes.first.bytesPerRow,
       );
 

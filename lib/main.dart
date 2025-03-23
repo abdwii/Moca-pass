@@ -13,7 +13,7 @@ import 'core/local_data/session_management.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppConfig.environment = Environment.production;
+  AppConfig.environment = Environment.development;
   if(AppConfig.environment != Environment.production) {
     {
       Logger().i(
