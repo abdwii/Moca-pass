@@ -1,8 +1,8 @@
+import 'package:MocaPass/core/api/api_caller.dart';
 import 'package:MocaPass/core/api/app_configs/app_config.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import '../../../core/api/api_caller.dart';
 import '../../../core/api/constants/endpoints.dart';
 import '../../../core/api/constants/methods.dart';
 import '../../../core/local_data/session_management.dart';
@@ -15,7 +15,7 @@ class ScanCubit extends Cubit<ScanState> {
   bool? isScanIn;
   Future<void> scanIn(String qrCode) async {
     emit(ScanLoading());
-    final call = await APICaller(AppConfig.baseUrl).call(
+    final call = await ApiCaller(AppConfig.baseUrl).call(
       endpoint: Endpoints.scanIn,
       method: APIMethods.post,
       options: Options(
@@ -44,7 +44,7 @@ class ScanCubit extends Cubit<ScanState> {
 
   Future<void> scanOut(String qrCode) async {
     emit(ScanLoading());
-    final call = await APICaller(AppConfig.baseUrl).call(
+    final call = await ApiCaller(AppConfig.baseUrl).call(
       endpoint: Endpoints.scanOut,
       method: APIMethods.post,
       options: Options(

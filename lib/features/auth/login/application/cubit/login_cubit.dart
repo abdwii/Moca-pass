@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit() : super(LoginStateInitial());
 
-  final APICaller _apiCaller = APICaller(AppConfig.authBaseUrl);
+  final ApiCaller _apiCaller = ApiCaller(AppConfig.authBaseUrl);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> signIn(BuildContext context) async {
