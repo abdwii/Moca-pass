@@ -9,7 +9,7 @@ class BaseResponse {
   BaseResponse.fromJson(Map<String, dynamic> json) {
     succeeded = json['Succeeded'];
     message = json['Message'];
-    errors = json['errors'].cast<String>();
+    errors = json['errors'];
     data = json['Data'];
   }
 
