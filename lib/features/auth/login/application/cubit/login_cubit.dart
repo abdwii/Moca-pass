@@ -35,7 +35,7 @@ class LoginCubit extends Cubit<LoginState> {
       },
       (response) {
         if (response.succeeded == true) {
-          LoginPojo loginModel = LoginPojo.fromJson(response.data);
+          LoginPojo loginModel = LoginPojo.fromJson(response.data as Map<String, dynamic>);
           SessionManagement.createSession(token: loginModel.jwToken ?? "");
           emit(LoginStateLoaded());
         } else {

@@ -1,7 +1,6 @@
 import 'package:MocaPass/core/presentation/routes/routes_manager.dart';
 import 'package:MocaPass/core/presentation/widgets/secondary_custom_button.dart';
 import 'package:MocaPass/core/utility/colors_data.dart';
-import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:responsive_builder/responsive_builder.dart';

@@ -1,4 +1,3 @@
-
 import 'config_dev.dart';
 import 'config_live.dart';
 import 'config_stage.dart';
@@ -7,6 +6,7 @@ enum Environment { development, staging, production }
 
 class AppConfig {
   static Environment environment = Environment.development;
+
   static String get baseUrl {
     switch (environment) {
       case Environment.development:

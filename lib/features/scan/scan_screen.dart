@@ -33,15 +33,15 @@ class _ScanPageState extends State<ScanPage> {
   @override
   void initState() {
     controller = MobileScannerController(
-        detectionSpeed: DetectionSpeed.noDuplicates,
-        facing:
-            SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
-                    0
-                ? CameraFacing.front
-                : CameraFacing.back,
-        torchEnabled: false,
-        useNewCameraSelector: true);
-/*    controller.start(
+      detectionSpeed: DetectionSpeed.noDuplicates,
+      facing:
+          SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) == 0
+              ? CameraFacing.front
+              : CameraFacing.back,
+      torchEnabled: false,
+      useNewCameraSelector: false,
+    );
+    /*    controller.start(
         cameraFacingOverride:
             SessionManagement.getCamFacing(SessionManagement.cameraFacingKey) ==
                     0
@@ -62,10 +62,7 @@ class _ScanPageState extends State<ScanPage> {
       overlayColor: Colors.transparent,
       overlayWidgetBuilder: (_) {
         return BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: 2.5,
-            sigmaY: 2.5,
-          ),
+          filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -98,8 +95,9 @@ class _ScanPageState extends State<ScanPage> {
               if (state is ScanLoaded) {
                 hideLoader(context);
                 Timer(const Duration(milliseconds: 250), () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.scanSuccessScreen);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(Routes.scanSuccessScreen);
                 });
               }
               if (state is ScanError) {
@@ -112,73 +110,52 @@ class _ScanPageState extends State<ScanPage> {
               }
             },
             child: AiBarcodeScanner(
-              canPop: false,
-              bottomBar: Container(
-                color: Colors.transparent,
-                height: 0,
-              ),
+              hideGalleryButton: true,
+              hideSheetDragHandler: true,
+              hideSheetTitle: true,
               overlayColor: kOverlayColor,
               borderRadius: 21,
               borderColor: primaryColor,
-              borderWidth: 3.5.sh,
+              borderWidth: 3.sh,
               controller: controller,
-              onDetect: (capture) {},
-              showSuccess: false,
-              onScan: (capture) async {
-                // handleBarcodeScanning(scan, capture);
+              onDetect: (capture) async {
                 Logger().i(capture);
-                // controller.stop();
                 bool? isScanIn = BlocProvider.of<ScanCubit>(context).isScanIn;
-                if (isScanIn == true) {
-                  await BlocProvider.of<ScanCubit>(context).scanIn(capture);
-                } else if (isScanIn == false) {
-                  await BlocProvider.of<ScanCubit>(context).scanOut(capture);
+                if (isScanIn == true &&
+                    capture.barcodes.isNotEmpty &&
+                    capture.barcodes[0].rawValue != null) {
+                  await BlocProvider.of<ScanCubit>(
+                    context,
+                  ).scanIn(capture.barcodes[0].rawValue!);
+                } else if (isScanIn == false &&
+                    capture.barcodes.isNotEmpty &&
+                    capture.barcodes[0].rawValue != null) {
+                  await BlocProvider.of<ScanCubit>(
+                    context,
+                  ).scanOut(capture.barcodes[0].rawValue!);
                 } else {
                   Navigator.of(context).pop();
                 }
               },
+              showSuccess: false,
             ),
           ),
           Column(
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsetsDirectional.symmetric(
-                    horizontal: 4.sw,
-                    vertical: 4.sh,
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 0.5.sw),
-                      Text(
-                        StringConst.back,
-                        style: scannerInfoTextStyle(isTablet),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: deviceOrientation == Orientation.portrait
-                        ? 10.sh
-                        : 2.5.sh),
+                  top: deviceOrientation == Orientation.portrait
+                      ? 10.sh
+                      : 2.5.sh,
+                ),
                 child: Text(
                   StringConst.scanInfoText,
                   style: scannerInfoTextStyle(isTablet),
                   textAlign: TextAlign.center,
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
